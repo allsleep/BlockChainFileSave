@@ -20,7 +20,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-
+@CrossOrigin
 @RestController
 @Slf4j
 public class MinioController {
