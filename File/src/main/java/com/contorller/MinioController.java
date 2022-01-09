@@ -92,7 +92,7 @@ public class MinioController {
 
     //下载文件
     @RequestMapping("/download/{filename}")
-    public com.pojo.Result<Object> download(HttpServletResponse response, @PathVariable("filename") String filename){
+    public void download(HttpServletResponse response, @PathVariable("filename") String filename){
         InputStream in = null;
         try {
             //获取对象信息
@@ -110,7 +110,6 @@ public class MinioController {
             IOUtils.copy(in, response.getOutputStream());
         }catch(Exception e){
             log.error(e.getMessage());
-            return new com.pojo.Result<> (false, StatusCode.ERROR, "下载失败");
         }finally {
             if (in != null){
                 try{
@@ -120,9 +119,9 @@ public class MinioController {
                 }
             }
         }
-        return new com.pojo.Result<> ("下载成功");
     }
 
+    //删除文件
     @DeleteMapping("/delete/{filename}")
     public com.pojo.Result<Object> delete(@PathVariable("filename") String filename){
         try {
