@@ -9,6 +9,7 @@
         <module>Login</module>
         <module>File</module>
         <module>Eureka</module>
+        <module>BlockChain</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
