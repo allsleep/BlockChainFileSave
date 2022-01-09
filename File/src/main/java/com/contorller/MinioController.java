@@ -1,5 +1,6 @@
 package com.contorller;
 
+import com.CommonMethods.FileHash;
 import com.config.formatFileSize;
 import com.pojo.StatusCode;
 import io.minio.*;
@@ -63,9 +64,15 @@ public class MinioController {
 
         List<String> orgFileNameList = new ArrayList<>(file.length);
 
+        //获取MD5值
+        List<Map<String, String>> secs = new ArrayList<>(file.length);
+
         for (MultipartFile multipartFile : file) {
             String orgFileName = multipartFile.getOriginalFilename();
             orgFileNameList.add(orgFileName);
+            //获取MD5值
+            secs.add(FileHash.getFileHash(multipartFile));
+
             try {
                 //文件上传
                 InputStream in = multipartFile.getInputStream();
@@ -82,6 +89,8 @@ public class MinioController {
                 return new com.pojo.Result<Object> (false, StatusCode.ERROR, "上传失败");
             }
         }
+        //打印加密后的MD5值
+        log.info(String.valueOf(secs));
 
         Map<String, Object> data = new HashMap<String, Object>();
         data.put("bucketName", bucketName);
