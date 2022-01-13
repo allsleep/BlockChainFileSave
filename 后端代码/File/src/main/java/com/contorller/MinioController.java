@@ -3,6 +3,7 @@ package com.contorller;
 import com.CommonMethods.FileHash;
 import com.config.formatFileSize;
 import com.pojo.StatusCode;
+import com.service.MinioService;
 import io.minio.*;
 import io.minio.errors.*;
 import io.minio.messages.Item;
@@ -31,6 +32,8 @@ public class MinioController {
     @Value("${minio.bucketName}")
     private String bucketName;
 
+    @Autowired
+    private MinioService minioService;
     //获取当前桶里的内容
     @GetMapping("/list")
     public com.pojo.Result<Object> list() throws Exception {
@@ -57,45 +60,19 @@ public class MinioController {
 
     //上传文件
     @PostMapping("/upload")
-    public com.pojo.Result<Object> upload(@RequestParam(name = "file", required = false) MultipartFile[] file){
+    public com.pojo.Result<Object> upload(@RequestParam(name = "file", required = false) MultipartFile[] file,
+                                          @RequestParam(name = "author", required = false) String author
+                                          ){
         if (file == null || file.length == 0) {
             return new com.pojo.Result<Object> (false, StatusCode.ERROR, "文件大小为0");
         }
 
-        List<String> orgFileNameList = new ArrayList<>(file.length);
+        int res_state = minioService.upload(file);
 
-        //获取MD5值
-        List<Map<String, String>> secs = new ArrayList<>(file.length);
-
-        for (MultipartFile multipartFile : file) {
-            String orgFileName = multipartFile.getOriginalFilename();
-            orgFileNameList.add(orgFileName);
-            //获取MD5值
-            secs.add(FileHash.getFileHash(multipartFile));
-
-            try {
-                //文件上传
-                InputStream in = multipartFile.getInputStream();
-
-                minioClient.putObject(
-                        PutObjectArgs.builder().bucket(bucketName)
-                                .object(orgFileName)
-                                .stream(in, multipartFile.getSize(), -1)
-                                .contentType(multipartFile.getContentType())
-                                .build());
-                in.close();
-            }catch (IOException | ErrorResponseException | InsufficientDataException | InternalException | InvalidKeyException | InvalidResponseException | NoSuchAlgorithmException | ServerException | XmlParserException e) {
-                log.error(e.getMessage());
-                return new com.pojo.Result<Object> (false, StatusCode.ERROR, "上传失败");
-            }
-        }
-        //打印加密后的MD5值
-        log.info(String.valueOf(secs));
-
-        Map<String, Object> data = new HashMap<String, Object>();
-        data.put("bucketName", bucketName);
-        data.put("fileName", orgFileNameList);
-        return new com.pojo.Result<Object> (true, StatusCode.OK, "上传成功", data);
+        if (res_state == 0)
+            return new com.pojo.Result<Object> (true, StatusCode.OK, "上传成功");
+        else
+            return new com.pojo.Result<Object> (false, StatusCode.ERROR, "上传失败");
     }
 
 

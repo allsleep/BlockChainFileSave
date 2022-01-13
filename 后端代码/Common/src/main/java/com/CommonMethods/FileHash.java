@@ -21,4 +21,10 @@ public class FileHash {
         }
         return res;
     }
+
+    public static  Map<String, String> getFileId(String fileMD5){
+        Map<String, String> res = new HashMap<>();
+        byte[] fileId = DigestUtils.sha512(fileMD5);
+        return null;
+    }
 }
