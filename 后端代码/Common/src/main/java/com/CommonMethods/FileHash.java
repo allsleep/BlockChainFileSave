@@ -13,6 +13,7 @@ import java.util.logging.SimpleFormatter;
 
 @Slf4j
 public class FileHash {
+
     public static Map<String, String> getFileHash(MultipartFile file) {
         File toFile = null;
         Map<String, String> res = new HashMap<>();
@@ -27,16 +28,25 @@ public class FileHash {
         return res;
     }
 
-    public static  Map<String, String> getFileId(String fileMD5){
+    public static Map<String, String> getFileCacheId(String MD5) {
+        String fileCacheID = new String(DigestUtils.sha512(MD5));
         Map<String, String> res = new HashMap<>();
+        res.put(MD5, fileCacheID);
+        return res;
+    }
 
-        String fileId = new String(DigestUtils.sha512(fileMD5));
+    public static  Map<String, String> getFileId(String file_cache_id){
+        Map<String, String> res = new HashMap<>();
+        IdWorker idWorker = new IdWorker(0,0);
+
+        String fileId = String.valueOf(idWorker.nextId());
 
         Date now = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMDD");
-        fileId += format.format(now);
-        log.info("fileMD：" + fileMD5 +" fileId: " + fileId);
-        res.put(fileMD5, fileId);
+        fileId = format.format(now) + fileId;
+
+        log.info("fileMD：" + file_cache_id +" fileId: " + fileId);
+        res.put(file_cache_id, fileId);
         return res;
     }
 }
