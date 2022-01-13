@@ -3,4 +3,4 @@
 
 `前端采用：element ui + Vue`  
 `后端采用：spring boot + spring cloud + minio`  
-`区块链采用：FISCO BCOS V3.0`  
+`区块链采用：FISCO BCOS V2.7`  
