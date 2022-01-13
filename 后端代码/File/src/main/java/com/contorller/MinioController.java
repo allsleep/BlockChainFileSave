@@ -3,6 +3,7 @@ package com.contorller;
 import com.CommonMethods.FileHash;
 import com.config.formatFileSize;
 import com.pojo.StatusCode;
+import com.pojo.person.person;
 import com.service.MinioService;
 import io.minio.*;
 import io.minio.errors.*;
@@ -61,13 +62,17 @@ public class MinioController {
     //上传文件
     @PostMapping("/upload")
     public com.pojo.Result<Object> upload(@RequestParam(name = "file", required = false) MultipartFile[] file,
-                                          @RequestParam(name = "author", required = false) String author
-                                          ){
+                                          @RequestParam(name = "author", required = false) String author,
+                                          @RequestParam(name = "idCard", required = false) String idCard,
+                                          @RequestParam(name = "phoneNumber", required = false) String phoneNumber,
+                                          @RequestParam(name = "fileName", required = false) String fileName){
         if (file == null || file.length == 0) {
             return new com.pojo.Result<Object> (false, StatusCode.ERROR, "文件大小为0");
         }
 
-        int res_state = minioService.upload(file);
+        person aut = new person(author, idCard, phoneNumber, fileName);
+
+        int res_state = minioService.upload(file, aut);
 
         if (res_state == 0)
             return new com.pojo.Result<Object> (true, StatusCode.OK, "上传成功");

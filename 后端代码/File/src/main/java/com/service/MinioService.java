@@ -2,6 +2,7 @@ package com.service;
 
 import com.CommonMethods.FileHash;
 import com.pojo.StatusCode;
+import com.pojo.person.person;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.errors.*;
@@ -36,15 +37,15 @@ public class MinioService {
     success: 0
     failed: -1
      */
-    public int upload(MultipartFile[] file) {
-        List<String> orgFileNameList = new ArrayList<>(file.length);
+    public int upload(MultipartFile[] file, person aut) {
+        List<person> orgFileNameList = new ArrayList<>(file.length);
 
         //获取MD5值
-        List<Map<String, String>> secs = new ArrayList<>(file.length);
+        List<Map<person, String>> secs = new ArrayList<>(file.length);
 
         for (MultipartFile multipartFile : file) {
             String orgFileName = multipartFile.getOriginalFilename();
-            orgFileNameList.add(orgFileName);
+            orgFileNameList.add(aut);
             //获取MD5值
             secs.add(FileHash.getFileHash(multipartFile));
 
