@@ -13,28 +13,26 @@ import java.util.Map;
 @Slf4j
 public class FileHash {
 
-    public static Map<String, String> getFileHash(MultipartFile file) {
+    public static String getFileHash(MultipartFile file) {
         File toFile = null;
-        Map<String, String> res = new HashMap<>();
+        String sec = "";
         try{
             InputStream ins = file.getInputStream();        //获取MultipartFile的输入流
-            String filePath =  file.getOriginalFilename();
-            String sec = DigestUtils.md5Hex(ins);
-            res.put(filePath, sec);
+            sec = DigestUtils.md5Hex(ins);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return res;
+        return sec;
     }
 
-    public static Map<String, String> getFileCacheId(String MD5) {
-        String fileCacheID = new String(DigestUtils.sha512(MD5));
-        Map<String, String> res = new HashMap<>();
-        res.put(MD5, fileCacheID);
-        return res;
-    }
+//    public static Map<String, String> getFileCacheId(String MD5) {
+//        String fileCacheID = new String(DigestUtils.sha512(MD5));
+//        Map<String, String> res = new HashMap<>();
+//        res.put(MD5, fileCacheID);
+//        return res;
+//    }
 
-    public static  Map<String, String> getFileId(String file_cache_id){
+    public static  Map<String, String> getFileId(String MD5){
         Map<String, String> res = new HashMap<>();
         IdWorker idWorker = new IdWorker(0,0);
 
@@ -44,8 +42,8 @@ public class FileHash {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMDD");
         fileId = format.format(now) + fileId;
 
-        log.info("fileMD：" + file_cache_id +" fileId: " + fileId);
-        res.put(file_cache_id, fileId);
+        log.info("fileMD：" + MD5 +" fileId: " + fileId);
+        res.put(MD5, fileId);
         return res;
     }
 }
