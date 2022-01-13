@@ -64,8 +64,7 @@ public class MinioService {
         List<String> md5s = MD5S.getSecond();
         List<String> fileIds = new ArrayList<>();
         for (String var: md5s) {
-            Map<String, String> fileId = FileHash.getFileId(var);
-            fileIds.add("");
+            fileIds.add(FileHash.getFileId(var));
         }
     }
 

@@ -32,8 +32,8 @@ public class FileHash {
 //        return res;
 //    }
 
-    public static  Map<String, String> getFileId(String MD5){
-        Map<String, String> res = new HashMap<>();
+    public static  String getFileId(String MD5){
+
         IdWorker idWorker = new IdWorker(0,0);
 
         String fileId = String.valueOf(idWorker.nextId());
@@ -43,7 +43,6 @@ public class FileHash {
         fileId = format.format(now) + fileId;
 
         log.info("fileMD：" + MD5 +" fileId: " + fileId);
-        res.put(MD5, fileId);
-        return res;
+        return fileId;
     }
 }
