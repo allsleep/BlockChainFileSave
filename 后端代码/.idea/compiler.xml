@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="BlockChain" />
+        <module name="Gateway" />
+        <module name="Login" />
+        <module name="File" />
+        <module name="Eureka" />
+        <module name="Common" />
+        <module name="TestConnect" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="BlockChain" options="-parameters" />
+      <module name="Common" options="-parameters --add-modules java.base" />
+      <module name="Eureka" options="-parameters" />
+      <module name="File" options="-parameters" />
+      <module name="Gateway" options="-parameters" />
+      <module name="Login" options="-parameters" />
+      <module name="TestConnect" options="-parameters" />
+    </option>
+  </component>
+</project>
