@@ -67,6 +67,12 @@ public class MinioService {
         //打印加密后的MD5值
         log.info(String.valueOf(secs));
 
+
+
         return 0;
+    }
+
+    private void PushFileId(List<Map<String, String>> MD5S){
+
     }
 }

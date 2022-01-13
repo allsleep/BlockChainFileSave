@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.SimpleFormatter;
 
 @Slf4j
 public class FileHash {
