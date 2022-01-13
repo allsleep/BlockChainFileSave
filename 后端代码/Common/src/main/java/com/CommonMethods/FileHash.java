@@ -1,12 +1,17 @@
 package com.CommonMethods;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.SimpleFormatter;
 
+@Slf4j
 public class FileHash {
     public static Map<String, String> getFileHash(MultipartFile file) {
         File toFile = null;
@@ -24,7 +29,14 @@ public class FileHash {
 
     public static  Map<String, String> getFileId(String fileMD5){
         Map<String, String> res = new HashMap<>();
-        byte[] fileId = DigestUtils.sha512(fileMD5);
-        return null;
+
+        String fileId = new String(DigestUtils.sha512(fileMD5));
+
+        Date now = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMDD");
+        fileId += format.format(now);
+        log.info("fileMD：" + fileMD5 +" fileId: " + fileId);
+        res.put(fileMD5, fileId);
+        return res;
     }
 }
