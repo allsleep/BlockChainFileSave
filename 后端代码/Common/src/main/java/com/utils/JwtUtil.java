@@ -20,7 +20,7 @@ public class JwtUtil {
     // 创建token
     public static String createJWT(String id, String subject, Long ttlMillis) {
 
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS512;
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
         if(ttlMillis==null){
