@@ -1,28 +1,13 @@
 package com.CommonMethods;
-
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-@Slf4j
+
 public class FileHash {
 
-    public static String getFileHash(MultipartFile file) {
-        File toFile = null;
-        String sec = "";
-        try{
-            InputStream ins = file.getInputStream();        //获取MultipartFile的输入流
-            sec = DigestUtils.md5Hex(ins);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sec;
+    public static String getFileHash(byte[] file) {
+        return DigestUtils.md5Hex(file);
     }
 
 //    public static Map<String, String> getFileCacheId(String MD5) {
@@ -41,8 +26,6 @@ public class FileHash {
         Date now = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMDD");
         fileId = format.format(now) + fileId;
-
-        log.info("fileMD：" + MD5 +" fileId: " + fileId);
         return fileId;
     }
 }

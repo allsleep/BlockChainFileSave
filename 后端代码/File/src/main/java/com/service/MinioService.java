@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class MinioService {
     success: 0
     failed: -1
      */
-    public int upload(MultipartFile[] file, Person aut) {
+    public int upload(MultipartFile[] file, Person aut)  {
         List<Person> orgFileNameList = new ArrayList<>(file.length);
 
         //获取MD5值
@@ -38,8 +39,8 @@ public class MinioService {
         for (MultipartFile multipartFile : file) {
             orgFileNameList.add(aut);
             //获取MD5值
-            secs.add(FileHash.getFileHash(multipartFile));
             try{
+                secs.add(FileHash.getFileHash(multipartFile.getInputStream().readAllBytes()));
                 fileUpload(multipartFile);
             }catch (Exception e){
                 log.error(e.getMessage());
