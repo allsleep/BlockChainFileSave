@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: gateway
+server:
+  port: 80
+
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]': # 匹配所有请求
+            allowedOrigins: "*" #跨域处理 允许所有的域
+            allowedMethods: # 支持的方法
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      routes:
+        - id: file
+          uri: lb://file   #lb为动态路由协议
+          predicates:
+            - Path=/file/**
+          filters:
+            - StripPrefix= 1
+
+        - id: login
+          uri: lb://login
+          predicates:
+            - Path=/**
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000
+#  instance:
+#    prefer-ip-address: true

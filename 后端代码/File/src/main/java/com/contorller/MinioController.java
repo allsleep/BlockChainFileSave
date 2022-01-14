@@ -1,12 +1,10 @@
 package com.contorller;
 
-import com.CommonMethods.FileHash;
 import com.config.formatFileSize;
+import com.pojo.Person;
 import com.pojo.StatusCode;
-import com.pojo.person.person;
 import com.service.MinioService;
 import io.minio.*;
-import io.minio.errors.*;
 import io.minio.messages.Item;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -19,8 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 @CrossOrigin
@@ -70,7 +66,7 @@ public class MinioController {
             return new com.pojo.Result<Object> (false, StatusCode.ERROR, "文件大小为0");
         }
 
-        person aut = new person(author, idCard, phoneNumber, fileName);
+        Person aut = new Person(author, idCard, phoneNumber, fileName);
 
         int res_state = minioService.upload(file, aut);
 
