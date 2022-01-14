@@ -1,24 +1,24 @@
 package com.controller;
 
-import com.CommonMethods.FileHash;
-import com.alibaba.fastjson.JSONObject;
-import com.pojo.LoginInfo;
+import com.CommonMethods.IdWorker;
 import com.pojo.Result;
 import com.pojo.StatusCode;
+import com.receive.receiveBody;
 import com.service.LoginService;
-import com.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/login")
 public class LoginController {
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    private IdWorker idWorker;
 
     @GetMapping
     public ModelAndView login(){
@@ -30,11 +30,20 @@ public class LoginController {
         return new ModelAndView("signup");
     }
 
-    @GetMapping("/test")
-    public Result<String> getToken(@RequestBody LoginInfo loginInfo){
-        String token = JwtUtil.createJWT(loginInfo.getAccountId(), loginInfo.getPerson().toString(), null);
-//        JSONObject json = new JSONObject();
-//        json.put("token", token);
-        return new com.pojo.Result<>(true, StatusCode.OK, "获取成功", token);
+    @PostMapping("/api/signup")
+    public Result<Object> signup_api(@RequestBody receiveBody rec) {
+        String accountId = String.valueOf(idWorker.nextId());
+        if (!loginService.isUserExist(rec.getUsername()))
+            return new Result(false, StatusCode.LOGIN_ERROR, "该用户名已经注册");
+        if (loginService.addUser(accountId, rec.getUsername(), rec.getPassword()) &&
+                loginService.addUserInfo(accountId, rec.getAuthor(), rec.getIdCard(), rec.getPhoneNumber(), new Date()))
+            return new Result("注册成功");
+        else
+            return new Result(false, StatusCode.LOGIN_ERROR, "注册失败");
+    }
+
+    @GetMapping("/api/login")
+    public Result<Object> login_api(@RequestParam("username") String username, @RequestParam("password") String password) {
+        return null;
     }
 }

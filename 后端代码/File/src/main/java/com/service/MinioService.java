@@ -1,7 +1,7 @@
 package com.service;
 
 import com.CommonMethods.FileHash;
-import com.pojo.Person;
+import com.pojo.LoginInfo;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import kotlin.Pair;
@@ -31,8 +31,8 @@ public class MinioService {
     success: 0
     failed: -1
      */
-    public int upload(MultipartFile[] file, Person aut)  {
-        List<Person> orgFileNameList = new ArrayList<>(file.length);
+    public int upload(MultipartFile[] file, LoginInfo aut)  {
+        List<LoginInfo> orgFileNameList = new ArrayList<>(file.length);
 
         //获取MD5值
         List<String> secs = new ArrayList<>(file.length);
@@ -41,20 +41,20 @@ public class MinioService {
             //获取MD5值
             try{
                 secs.add(FileHash.getFileHash(multipartFile.getInputStream().readAllBytes()));
-                fileUpload(multipartFile);
+                fileUpload(multipartFile);  //文件上传
             }catch (Exception e){
                 log.error(e.getMessage());
                 return -1;
             }
         }
         //打印加密后的MD5值
-        Pair<Person, List<String>> MD5S = new Pair<>(aut, secs);
+        Pair<LoginInfo, List<String>> MD5S = new Pair<>(aut, secs);
         PushFileId(MD5S);
         log.info(String.valueOf(secs));
         return 0;
     }
 
-    private void PushFileId(Pair<Person, List<String>> MD5S){
+    private void PushFileId(Pair<LoginInfo, List<String>> MD5S){
         List<String> md5s = MD5S.getSecond();
         List<String> fileIds = new ArrayList<>();
         for (String var: md5s) {
