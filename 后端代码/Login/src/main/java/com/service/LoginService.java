@@ -33,6 +33,9 @@ public class LoginService {
     public LoginInfo getUserInfo(String accountId) {
         return loginMapper.findLoginInfo(accountId);
     }
+    public User getUser(String username) {
+        return loginMapper.findUser(username);
+    }
 
     public boolean addUser(String accountId, String username, String password){
         User new_user = new User();

@@ -3,6 +3,7 @@ package com.contorller;
 import com.config.formatFileSize;
 import com.pojo.LoginInfo;
 import com.pojo.StatusCode;
+import com.receive.ReceiveBody;
 import com.service.MinioService;
 import io.minio.*;
 import io.minio.messages.Item;
@@ -57,18 +58,12 @@ public class MinioController {
 
     //上传文件
     @PostMapping("/upload")
-    public com.pojo.Result<Object> upload(@RequestParam(name = "file", required = false) MultipartFile[] file,
-                                          @RequestParam(name = "accountId", required = false) String accountId,
-                                          @RequestParam(name = "author", required = false) String author,
-                                          @RequestParam(name = "idCard", required = false) String idCard,
-                                          @RequestParam(name = "phoneNumber", required = false) String phoneNumber){
-        if (file == null || file.length == 0) {
+    public com.pojo.Result<Object> upload(@RequestBody ReceiveBody rec){
+        if (rec.getFile() == null || rec.getFile().length == 0) {
             return new com.pojo.Result<Object> (false, StatusCode.ERROR, "文件大小为0");
         }
 
-        LoginInfo aut = new LoginInfo(accountId, author, idCard, phoneNumber, new Date());
-
-        int res_state = minioService.upload(file, aut);
+        int res_state = minioService.upload(rec.getFile(), rec.getAccountId());
 
         if (res_state == 0)
             return new com.pojo.Result<Object> (true, StatusCode.OK, "上传成功");
@@ -80,32 +75,7 @@ public class MinioController {
     //下载文件
     @RequestMapping("/download/{filename}")
     public void download(HttpServletResponse response, @PathVariable("filename") String filename){
-        InputStream in = null;
-        try {
-            //获取对象信息
-            StatObjectResponse stat = minioClient.statObject(
-                    StatObjectArgs.builder().bucket(bucketName).object(filename).build()
-            );
-
-            response.setContentType(stat.contentType());
-            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(filename, StandardCharsets.UTF_8));
-
-            //文件下载
-            in = minioClient.getObject(
-                    GetObjectArgs.builder().bucket(bucketName)
-                            .object(filename).build());
-            IOUtils.copy(in, response.getOutputStream());
-        }catch(Exception e){
-            log.error(e.getMessage());
-        }finally {
-            if (in != null){
-                try{
-                    in.close();
-                }catch(IOException e){
-                    log.error(e.getMessage());
-                }
-            }
-        }
+        minioService.download(response, filename);
     }
 
     //删除文件

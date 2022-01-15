@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class FileHash {
 
-    public static String getFileHash(byte[] file) {
+    public static String getFileMD5(byte[] file) {
         return DigestUtils.md5Hex(file);
     }
 
@@ -18,14 +18,9 @@ public class FileHash {
 //    }
 
     public static  String getFileId(String MD5){
-
-        IdWorker idWorker = new IdWorker(0,0);
-
-        String fileId = String.valueOf(idWorker.nextId());
-
         Date now = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMDD");
-        fileId = format.format(now) + fileId;
-        return fileId;
+        byte[] bytes = DigestUtils.sha3_224(MD5);
+        return (format.format(now) + new String(bytes));
     }
 }

@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.CommonMethods.IdWorker;
+import com.alibaba.fastjson.JSONObject;
 import com.pojo.Result;
 import com.pojo.StatusCode;
 import com.receive.receiveBody;
@@ -44,6 +45,16 @@ public class LoginController {
 
     @GetMapping("/api/login")
     public Result<Object> login_api(@RequestParam("username") String username, @RequestParam("password") String password) {
-        return null;
+        if (loginService.isUserExist(username))
+            return new Result(false, StatusCode.LOGIN_ERROR, "用户不存在");
+        if (loginService.login(username, password)) {
+            JSONObject json = new JSONObject();
+            json.put("token", loginService.getToken(
+                    loginService.getUserInfo(loginService.getUser(username).getAccountId())
+            ));
+            return new Result(true,StatusCode.OK,"登录成功", json);
+        }
+        else
+            return new Result(false, StatusCode.LOGIN_ERROR, "密码错误");
     }
 }

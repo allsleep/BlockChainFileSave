@@ -1,18 +1,24 @@
 package com.service;
 
 import com.CommonMethods.FileHash;
+import com.mapper.MinioMapper;
+import com.pojo.FileInfo;
 import com.pojo.LoginInfo;
-import io.minio.MinioClient;
-import io.minio.PutObjectArgs;
+import io.minio.*;
 import kotlin.Pair;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,43 +31,77 @@ public class MinioService {
     @Value("${minio.bucketName}")
     private String bucketName;
 
-
-
+    @Autowired
+    private MinioMapper minioMapper;
     /*
     success: 0
     failed: -1
+    filePushDatabaseFailed: -2
      */
-    public int upload(MultipartFile[] file, LoginInfo aut)  {
-        List<LoginInfo> orgFileNameList = new ArrayList<>(file.length);
-
-        //获取MD5值
-        List<String> secs = new ArrayList<>(file.length);
+    public int upload(MultipartFile[] file, String acconutId)  {
         for (MultipartFile multipartFile : file) {
-            orgFileNameList.add(aut);
             //获取MD5值
             try{
-                secs.add(FileHash.getFileHash(multipartFile.getInputStream().readAllBytes()));
+                String fileMD5 = FileHash.getFileMD5(multipartFile.getInputStream().readAllBytes());
+                FileInfo fileInfo = new FileInfo();
+                fileInfo.setFileMD5(fileMD5);
+                fileInfo.setFileId(fileMD5);
+                fileInfo.setFileName(multipartFile.getOriginalFilename());
+                fileInfo.setAccountId(acconutId);
+
+                if (!addFileInfo(fileInfo))      //文件信息入库
+                    return -2;
                 fileUpload(multipartFile);  //文件上传
             }catch (Exception e){
                 log.error(e.getMessage());
                 return -1;
             }
+
         }
         //打印加密后的MD5值
-        Pair<LoginInfo, List<String>> MD5S = new Pair<>(aut, secs);
-        PushFileId(MD5S);
-        log.info(String.valueOf(secs));
+
         return 0;
     }
 
-    private void PushFileId(Pair<LoginInfo, List<String>> MD5S){
-        List<String> md5s = MD5S.getSecond();
-        List<String> fileIds = new ArrayList<>();
-        for (String var: md5s) {
-            fileIds.add(FileHash.getFileId(var));
+    public void download(HttpServletResponse response, String filename){
+        InputStream in = null;
+        try {
+            //获取对象信息
+            StatObjectResponse stat = minioClient.statObject(
+                    StatObjectArgs.builder().bucket(bucketName).object(filename).build()
+            );
+
+            response.setContentType(stat.contentType());
+            response.setHeader("Content-Disposition", "attachment;filename=" +
+                    URLEncoder.encode(filename, StandardCharsets.UTF_8));
+
+            //文件下载
+            in = minioClient.getObject(
+                    GetObjectArgs.builder().bucket(bucketName)
+                            .object(filename).build());
+            IOUtils.copy(in, response.getOutputStream());
+        }catch(Exception e){
+            log.error(e.getMessage());
+        }finally {
+            if (in != null){
+                try{
+                    in.close();
+                }catch(IOException e){
+                    log.error(e.getMessage());
+                }
+            }
         }
     }
 
+    private boolean addFileInfo(FileInfo fileInfo){
+        return minioMapper.addFileInfo(fileInfo);
+    }
+
+    private String getFileId(String MD5){
+        return FileHash.getFileId(MD5);
+    }
+
+    //文件上传服务器
     private void fileUpload(MultipartFile file) throws  Exception{
         String orgFileName = file.getOriginalFilename();
         //文件上传
