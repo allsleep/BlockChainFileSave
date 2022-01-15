@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/api")
 public class LoginController {
     @Autowired
     private LoginService loginService;
@@ -21,17 +21,7 @@ public class LoginController {
     @Autowired
     private IdWorker idWorker;
 
-    @GetMapping
-    public ModelAndView login(){
-        return new ModelAndView("login");
-    }
-
-    @GetMapping("/signup")
-    public ModelAndView signup() {
-        return new ModelAndView("signup");
-    }
-
-    @PostMapping("/api/signup")
+    @PostMapping("/signup")
     public Result<Object> signup_api(@RequestBody receiveBody rec) {
         String accountId = String.valueOf(idWorker.nextId());
         if (!loginService.isUserExist(rec.getUsername()))
@@ -43,7 +33,7 @@ public class LoginController {
             return new Result(false, StatusCode.LOGIN_ERROR, "注册失败");
     }
 
-    @GetMapping("/api/login")
+    @GetMapping("/login")
     public Result<Object> login_api(@RequestParam("username") String username, @RequestParam("password") String password) {
         if (loginService.isUserExist(username))
             return new Result(false, StatusCode.LOGIN_ERROR, "用户不存在");

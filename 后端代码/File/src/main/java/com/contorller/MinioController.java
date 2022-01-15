@@ -1,28 +1,23 @@
 package com.contorller;
 
 import com.config.formatFileSize;
-import com.pojo.LoginInfo;
+import com.pojo.FileInfo;
 import com.pojo.StatusCode;
 import com.receive.ReceiveBody;
 import com.service.MinioService;
 import io.minio.*;
 import io.minio.messages.Item;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @CrossOrigin
 @RestController
 @Slf4j
+@RequestMapping("/api")
 public class MinioController {
     @Autowired
     private MinioClient minioClient;
@@ -32,9 +27,9 @@ public class MinioController {
 
     @Autowired
     private MinioService minioService;
-    //获取当前桶里的内容
-    @GetMapping("/list")
-    public com.pojo.Result<Object> list() throws Exception {
+    //获取当前系统桶里的内容
+    @GetMapping("/bucketList")
+    public com.pojo.Result<Object> list(){
         //获取bucket内容列表
         try {
             Iterable<Result<Item>> myObjects = minioClient.listObjects(
@@ -71,7 +66,6 @@ public class MinioController {
             return new com.pojo.Result<Object> (false, StatusCode.ERROR, "上传失败");
     }
 
-
     //下载文件
     @RequestMapping("/download/{filename}")
     public void download(HttpServletResponse response, @PathVariable("filename") String filename){
@@ -90,5 +84,14 @@ public class MinioController {
             return new com.pojo.Result<> (false, StatusCode.ERROR, "删除失败");
         }
         return new com.pojo.Result<> ("删除成功");
+    }
+
+    @GetMapping("/getFileList")
+    public com.pojo.Result<Object> getFileListByAccountId(@RequestParam("accountId") String accountId){
+        List<FileInfo> fileInfos = minioService.findFileInfoByAccountId(accountId);
+        if (fileInfos.size() == 0)
+            return new com.pojo.Result(false, StatusCode.ERROR, "文件为空");
+        else
+            return new com.pojo.Result(true, StatusCode.OK, "查询成功", fileInfos);
     }
 }
