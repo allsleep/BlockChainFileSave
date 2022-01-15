@@ -17,7 +17,7 @@
 <script>
 import axios from 'axios';
 export default {
-    name: 'PortTest',
+    name: 'FileUpload',
     data(){
         return {
             message: [],

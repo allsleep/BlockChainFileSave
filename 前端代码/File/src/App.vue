@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <PortTest />
+    <FileUpload />
   </div>
 </template>
 
 <script>
-import PortTest from "./components/PortTest";
+import FileUpload from "./components/FileUpload";
 
 export default {
   name: 'App',
   components: {
-    PortTest
+    FileUpload
   }
 }
 </script>
