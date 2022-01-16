@@ -6,6 +6,7 @@ import com.pojo.Result;
 import com.pojo.StatusCode;
 import com.receive.receiveBody;
 import com.service.LoginService;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/login/api")
 public class LoginController {
     @Autowired
     private LoginService loginService;
@@ -22,6 +23,7 @@ public class LoginController {
     private IdWorker idWorker;
 
     @PostMapping("/signup")
+    @ApiOperation("注册")
     public Result<Object> signup_api(@RequestBody receiveBody rec) {
         String accountId = String.valueOf(idWorker.nextId());
         if (!loginService.isUserExist(rec.getUsername()))
@@ -34,7 +36,9 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public Result<Object> login_api(@RequestParam("username") String username, @RequestParam("password") String password) {
+    @ApiOperation("登录")
+    public Result<Object> login_api(@RequestParam("username") @ApiParam("用户名") String username,
+                                    @RequestParam("password") @ApiParam("密码") String password) {
         if (loginService.isUserExist(username))
             return new Result(false, StatusCode.LOGIN_ERROR, "用户不存在");
         if (loginService.login(username, password)) {
@@ -46,5 +50,10 @@ public class LoginController {
         }
         else
             return new Result(false, StatusCode.LOGIN_ERROR, "密码错误");
+    }
+
+    @GetMapping
+    public String test(){
+        return "test";
     }
 }

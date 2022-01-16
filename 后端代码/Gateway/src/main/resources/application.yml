@@ -1,9 +1,6 @@
 spring:
   application:
     name: gateway
-server:
-  port: 80
-
   cloud:
     gateway:
       globalcors:
@@ -22,11 +19,26 @@ server:
 #            - Path=/file/**
 #          filters:
 #            - StripPrefix= 1
+        - id: loginSwagger
+          uri: lb://login/swagger-ui
+          predicates:
+            - Path=/doc/login/**
+          filters:
+            - StripPrefix=2
 
         - id: login
           uri: lb://login
           predicates:
-            - Path=/**
+            - Path=/login/**
+
+        - id: file
+            uri: lb://file
+            predicates:
+              - Path=/file/**
+
+server:
+  port: 80
+
 
 eureka:
   client:

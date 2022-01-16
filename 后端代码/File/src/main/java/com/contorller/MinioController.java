@@ -17,7 +17,7 @@ import java.util.*;
 @CrossOrigin
 @RestController
 @Slf4j
-@RequestMapping("/api")
+@RequestMapping("/file/api")
 public class MinioController {
     @Autowired
     private MinioClient minioClient;
