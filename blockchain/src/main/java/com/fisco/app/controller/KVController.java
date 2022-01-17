@@ -6,13 +6,8 @@ import com.fisco.app.entity.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @Classname KVController
- * @Description 通过接口调用sdk
- * @Date 2021/3/25 22:25
- * @Created by zyt
- */
 @RestController
+//@RequestMapping("/")
 public class KVController {
 
     @Autowired

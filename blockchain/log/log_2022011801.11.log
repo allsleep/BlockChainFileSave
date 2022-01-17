@@ -1,0 +1,10 @@
+info|2022-01-18 01:11:27.103113|[WS][SERVICE],[NEWOBJ][WsService]=0x7fdf439c9618
+info|2022-01-18 01:11:27.106258|[WS][INITIALIZER][initWsService]start websocket service as client,connected size=2
+info|2022-01-18 01:11:27.106291|[WS][INITIALIZER][initWsService]initializer for websocket service,listenIP=,listenPort=0,disableSsl=false,server=false,client=true,threadPoolSize=8,msgTimeOut=-1,connected peers=2
+info|2022-01-18 01:11:27.106335|[bcos_sdk_create][NEWOBJ],sdk=0x7fdf4593c910
+debug|2022-01-18 01:11:27.454146|[WS][SERVICE][connectOnce]try to connect to peer,endpoint=127.0.0.1:20200
+debug|2022-01-18 01:11:27.454221|[WS][SERVICE][connectOnce]try to connect to peer,endpoint=127.0.0.1:20201
+trace|2022-01-18 01:11:27.454333|[WS][CONNECTOR][connectToWsServer]async_resolve success,host=127.0.0.1,port=20200
+trace|2022-01-18 01:11:27.454719|[WS][CONNECTOR][connectToWsServer]async_resolve success,host=127.0.0.1,port=20201
+warning|2022-01-18 01:11:27.454912|[WS][CONNECTOR][connectToWsServer]async_connect failed,error=Connection refused,host=127.0.0.1,port=20200
+warning|2022-01-18 01:11:27.454977|[WS][CONNECTOR][connectToWsServer]async_connect failed,error=Connection refused,host=127.0.0.1,port=20201
