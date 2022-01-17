@@ -10,6 +10,7 @@
         <module>File</module>
         <module>Eureka</module>
         <module>TestConnect</module>
+<!--        <module>blockchain</module>-->
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
