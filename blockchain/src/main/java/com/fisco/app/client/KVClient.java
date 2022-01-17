@@ -4,7 +4,7 @@ import com.fisco.app.common.CommonClient;
 import com.fisco.app.contract.TestKV;
 import com.fisco.app.utils.SpringUtils;
 import org.fisco.bcos.sdk.BcosSDK;
-import org.fisco.bcos.sdk.codec.datatypes.generated.tuples.generated.Tuple3;
+import org.fisco.bcos.sdk.codec.datatypes.generated.tuples.generated.Tuple2;
 import org.fisco.bcos.sdk.model.TransactionReceipt;
 import org.fisco.bcos.sdk.transaction.model.exception.ContractException;
 import org.slf4j.Logger;
@@ -34,10 +34,10 @@ public class KVClient extends CommonClient implements ApplicationRunner {
 
     }
 
-    public Tuple3<String, String, String> get(String fileId) throws ContractException {
+    public Tuple2<Boolean, String> get(String fileId) throws ContractException {
 
         TestKV testKV = (TestKV) getContractMap().get("TestKV");
-        Tuple3<String, String, String> getValue = testKV.get(fileId);
+        Tuple2<Boolean, String> getValue = testKV.get(fileId);
         logger.info("KVClient");
         logger.info("结果：{}", getValue);
         return getValue;

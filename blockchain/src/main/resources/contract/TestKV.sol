@@ -22,12 +22,12 @@ contract TestKV {
         (ok, entry) = kv_table.get(TABLE_NAME, fileId);
         string memory fileMD5;
         if (ok) {
-            age = entry.fields[0].value;
+            fileMD5 = entry.fields[0].value;
         }
         return (ok, fileMD5);
     }
 
-    function set(string memory name, string memory age, string memory tel) public returns (int256) {
+    function set(string memory fileId, string memory fileMD5) public returns (int256) {
         KVField memory kv1 = KVField("file_md5", fileMD5);
         KVField[] memory KVFields = new KVField[](1);
         KVFields[0] = kv1;

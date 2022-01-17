@@ -1,0 +1,23 @@
+info|2022-01-18 00:28:21.027721|[WS][SERVICE],[NEWOBJ][WsService]=0x7fe7b01a0218
+info|2022-01-18 00:28:21.032647|[WS][INITIALIZER][initWsService]start websocket service as client,connected size=2
+info|2022-01-18 00:28:21.032697|[WS][INITIALIZER][initWsService]initializer for websocket service,listenIP=,listenPort=0,disableSsl=false,server=false,client=true,threadPoolSize=8,msgTimeOut=-1,connected peers=2
+info|2022-01-18 00:28:21.032846|[bcos_sdk_create][NEWOBJ],sdk=0x7fe7b3d50280
+debug|2022-01-18 00:28:21.516935|[WS][SERVICE][connectOnce]try to connect to peer,endpoint=127.0.0.1:20200
+debug|2022-01-18 00:28:21.517004|[WS][SERVICE][connectOnce]try to connect to peer,endpoint=127.0.0.1:20201
+trace|2022-01-18 00:28:21.517146|[WS][CONNECTOR][connectToWsServer]async_resolve success,host=127.0.0.1,port=20200
+trace|2022-01-18 00:28:21.517460|[WS][CONNECTOR][connectToWsServer]async_resolve success,host=127.0.0.1,port=20201
+warning|2022-01-18 00:28:21.517593|[WS][CONNECTOR][connectToWsServer]async_connect failed,error=Connection refused,host=127.0.0.1,port=20200
+warning|2022-01-18 00:28:21.517674|[WS][CONNECTOR][connectToWsServer]async_connect failed,error=Connection refused,host=127.0.0.1,port=20201
+debug|2022-01-18 00:28:41.518845|[WS][SERVICE][connectOnce]try to connect to peer,endpoint=127.0.0.1:20200
+debug|2022-01-18 00:28:41.518893|[WS][SERVICE][connectOnce]try to connect to peer,endpoint=127.0.0.1:20201
+trace|2022-01-18 00:28:41.519047|[WS][CONNECTOR][connectToWsServer]async_resolve success,host=127.0.0.1,port=20200
+trace|2022-01-18 00:28:41.519298|[WS][CONNECTOR][connectToWsServer]async_resolve success,host=127.0.0.1,port=20201
+warning|2022-01-18 00:28:41.519485|[WS][CONNECTOR][connectToWsServer]async_connect failed,error=Connection refused,host=127.0.0.1,port=20200
+warning|2022-01-18 00:28:41.519617|[WS][CONNECTOR][connectToWsServer]async_connect failed,error=Connection refused,host=127.0.0.1,port=20201
+info|2022-01-18 00:28:51.559688|[WS][SERVICE][startIocThread]IOC thread exit
+info|2022-01-18 00:28:51.559649|[WS][SERVICE][stop]stop websocket service successfully
+warning|2022-01-18 00:28:51.559715|[WS][SERVICE][waitForConnectionEstablish]the connection to the server timed out,timeout=30000
+error|2022-01-18 00:28:51.564125|[bcos_sdk_start],sdk=0x7fe7b3d50280,errorMsg=/Users/kyon_guo/.hunter/_Base/19eeb6d/2b85fb1/57df959/Build/bcos-boostssl/Source/bcos-boostssl/websocket/WsService.cpp(81): Throw in function void bcos::boostssl::ws::WsService::waitForConnectionEstablish()
+Dynamic exception type: boost::wrapexcept<std::runtime_error>
+std::exception::what: The connection to the server timed out
+info|2022-01-18 00:28:51.564142|[bcos_sdk_start],sdk=0x7fe7b3d50280
