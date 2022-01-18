@@ -17,10 +17,8 @@ public class FileHash {
 //        return res;
 //    }
 
-    public static  String getFileId(String MD5){
-        Date now = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMDD");
-        byte[] bytes = DigestUtils.sha3_224(MD5);
-        return (format.format(now) + new String(bytes));
+    public static  String getFileId(String accountId,String MD5){
+        byte[] bytes = DigestUtils.sha3_224(accountId + MD5);
+        return new String(bytes);
     }
 }

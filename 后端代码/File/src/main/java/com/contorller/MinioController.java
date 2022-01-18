@@ -66,7 +66,7 @@ public class MinioController {
             return new com.pojo.Result<Object> (false, StatusCode.ERROR, "上传失败");
     }
 
-    //下载文件
+    //下载文件 改造
     @RequestMapping("/download/{filename}")
     public void download(HttpServletResponse response, @PathVariable("filename") String filename){
         minioService.download(response, filename);

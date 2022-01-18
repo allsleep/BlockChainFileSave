@@ -38,17 +38,16 @@ public class MinioService {
     failed: -1
     filePushDatabaseFailed: -2
      */
-    public int upload(MultipartFile[] file, String accountId)  {
+    public int upload(MultipartFile[] file, String accountId) {
         for (MultipartFile multipartFile : file) {
             //获取MD5值
             try{
                 String fileMD5 = FileHash.getFileMD5(multipartFile.getInputStream().readAllBytes());
                 FileInfo fileInfo = new FileInfo();
                 fileInfo.setFileMD5(fileMD5);
-                fileInfo.setFileId(getFileId(fileMD5));
+                fileInfo.setFileId(getFileId(accountId, fileMD5));
                 fileInfo.setFileName(multipartFile.getOriginalFilename());
                 fileInfo.setAccountId(accountId);
-
                 if (!addFileInfo(fileInfo))      //文件信息入库
                     return -2;
                 fileUpload(multipartFile);  //文件上传
@@ -100,8 +99,8 @@ public class MinioService {
         return minioMapper.addFileInfo(fileInfo);
     }
 
-    private String getFileId(String MD5){
-        return FileHash.getFileId(MD5);
+    private String getFileId(String accountId,String MD5){
+        return FileHash.getFileId(accountId, MD5);
     }
 
     //文件上传服务器
