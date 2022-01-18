@@ -1,4 +1,4 @@
-package com.fisco.app.entity;
+package com.fisco.entity;
 
 public class ResponseData<T> {
 

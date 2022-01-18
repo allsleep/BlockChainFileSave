@@ -1,8 +1,8 @@
-package com.fisco.app.controller;
+package com.fisco.controller;
 
-import com.fisco.app.client.KVClient;
-import com.fisco.app.entity.File;
-import com.fisco.app.entity.ResponseData;
+import com.fisco.client.KVClient;
+import com.fisco.entity.File;
+import com.fisco.entity.ResponseData;
 import org.fisco.bcos.sdk.model.TransactionReceipt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

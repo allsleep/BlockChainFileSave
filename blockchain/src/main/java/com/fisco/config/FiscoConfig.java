@@ -1,4 +1,4 @@
-package com.fisco.app.config;
+package com.fisco.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;

@@ -1,4 +1,4 @@
-package com.fisco.app.contract;
+package com.fisco.contract;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
