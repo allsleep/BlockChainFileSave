@@ -1,0 +1,10 @@
+info|2022-01-18 22:00:07.648504|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-18 22:00:07.956367|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
+info|2022-01-18 22:00:27.652755|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-18 22:00:27.961274|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
+trace|2022-01-18 22:00:38.211805|[RPCWS][SERVICE][getEndPointsByGroup],group=group,endPoints=2
+debug|2022-01-18 22:00:38.211844|[RPC][IMPL][genericMethod],group=group,nodeName=,request={"jsonrpc":"2.0","method":"call","params":["group","","33E56a083e135936C1144960a708c43A661706C0","aT7IXgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcxMjM0NTY3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="],"id":4}
+info|2022-01-18 22:00:47.657351|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-18 22:00:47.966037|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
+info|2022-01-18 22:01:07.661672|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-18 22:01:07.969778|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
