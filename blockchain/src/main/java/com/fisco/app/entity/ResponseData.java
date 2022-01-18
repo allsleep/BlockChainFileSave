@@ -1,15 +1,18 @@
 package com.fisco.app.entity;
 
-/**
- * @Author: zyt
- * @Description:结果集
- * @Date: Created in 13:35 2021/1/8
- */
 public class ResponseData<T> {
 
     private int code;
     private String msg;
     private T data;
+
+    public static <T> ResponseData<T> success(String msg, T data) {
+        ResponseData responseData = new ResponseData();
+        responseData.setCode(200);
+        responseData.setMsg(msg);
+        responseData.setData(data);
+        return responseData;
+    }
 
     public static ResponseData success(String msg) {
         ResponseData responseData = new ResponseData();

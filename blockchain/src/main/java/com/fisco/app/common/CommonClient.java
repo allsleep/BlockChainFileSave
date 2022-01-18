@@ -13,9 +13,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @Author: zyt
  * @Description:此类提供一个发布合约的方法，并提供了基本实现方法，可以继承此类实现自己的方法
- * @Date: Created in 16:29 2021/1/20
  */
 public abstract class CommonClient {
 
@@ -34,8 +32,10 @@ public abstract class CommonClient {
         CryptoKeyPair cryptoKeyPair = client.getCryptoSuite().getCryptoKeyPair();
         Method method = clazz.getMethod("deploy", Client.class, CryptoKeyPair.class);
         T result = (T) method.invoke(null, new Object[]{client, cryptoKeyPair});
+
         logger.info("执行CommonClient的deploy方法");
         logger.info("部署合约成功:{}" + contractName, result);
+
         contractMap.put(contractName, result);
     }
 

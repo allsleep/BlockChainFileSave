@@ -3,25 +3,30 @@ package com.fisco.app.controller;
 import com.fisco.app.client.KVClient;
 import com.fisco.app.entity.File;
 import com.fisco.app.entity.ResponseData;
+import org.fisco.bcos.sdk.model.TransactionReceipt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@RequestMapping("/")
+@RequestMapping("/blockchain/api")
 public class KVController {
 
     @Autowired
     private KVClient kvClient;
 
-    @GetMapping("/get/{name}")
-    public ResponseData get(@PathVariable("fileId") String fileID) throws Exception {
-
-        return ResponseData.success(kvClient.get(fileID));
+    @GetMapping("/verify/{fileId}")
+    public ResponseData get(@PathVariable("fileId") String fileId) throws Exception {
+        try {
+            return ResponseData.success("查询成功", kvClient.get(fileId));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return ResponseData.error("查询失败");
     }
 
-    @PostMapping("/set")
+    @PostMapping("/upload")
     public ResponseData set(@RequestBody File file) {
-        kvClient.set(file.getFileId(), file.getFileMD5());
-        return ResponseData.success("新增成功");
+        TransactionReceipt transactionReceipt = kvClient.set(file.getFileId(), file.getFileMD5());
+        return ResponseData.success("新增成功", transactionReceipt);
     }
 }

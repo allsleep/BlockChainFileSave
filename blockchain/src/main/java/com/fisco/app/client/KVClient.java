@@ -16,8 +16,6 @@ import org.springframework.stereotype.Service;
 /**
  * @Classname KVClient
  * @Description sdk客户端，可以不使用ApplicationRunner，这里是让spring容器启动部署合约
- * @Date 2021/3/25 21:45
- * @Created by zyt
  */
 @Service
 public class KVClient extends CommonClient implements ApplicationRunner {
@@ -25,17 +23,16 @@ public class KVClient extends CommonClient implements ApplicationRunner {
     public static final Logger logger = LoggerFactory.getLogger(KVClient.class.getName());
 
 
-    public void set(String fileID, String fileMD5) {
+    public TransactionReceipt set(String fileID, String fileMD5) {
 
         TestKV testKV = (TestKV) getContractMap().get("TestKV");
         TransactionReceipt receipt = testKV.set(fileID, fileMD5);
         logger.info("KVClient");
         logger.info("结果：{}", receipt);
-
+        return receipt;
     }
 
     public Tuple2<Boolean, String> get(String fileId) throws ContractException {
-
         TestKV testKV = (TestKV) getContractMap().get("TestKV");
         Tuple2<Boolean, String> getValue = testKV.get(fileId);
         logger.info("KVClient");
@@ -46,6 +43,6 @@ public class KVClient extends CommonClient implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         BcosSDK sdk = SpringUtils.getBean("bcosSDK");
-        deploy("TestKV", TestKV.class, sdk);
+        deploy("TestKV", TestKV.class, sdk);    //部署合约
     }
 }
