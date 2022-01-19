@@ -25,15 +25,50 @@
               <input type="text" placeholder="请输入手机号码" v-model="phoneNumber">
             </div>
       </div>
-        <button @click="login" class="click_button">提交</button>
-        <button @click="signin" class="click_button">清空</button>
+        <router-link @click.native="putData" class="click_button router_link" to="/login">提交</router-link>
+        <button @click="clearData" class="click_button">清空</button>
     </div>
 </div>
 </template>
 
 <script>
+
 export default {
-    name: 'Singup'
+    name: 'Singup',
+    data: function (){
+      return {
+        "accountId": "",
+        "author": "",
+        "idCard": "",
+        "password": "",
+        "phoneNumber": "",
+        "username": ""
+      }
+    },
+    methods: {
+        putData: function(){
+            let put_data = {
+                "author": this.author,
+                "idCard": this.idCard,
+                "password": this.password,
+                "phoneNumber": this.phoneNumber,
+                "username": this.username
+            }
+            this.$axios.post("/login/api/signup", put_data)
+              .then(res => {
+                  alert(res.data.message)
+              })
+            
+        },
+        clearData: function(){
+            this.accountId = ""
+            this.author = ""
+            this.idCard = ""
+            this.password = ""
+            this.phoneNumber = ""
+            this.username = ""    
+        }
+    }
 }
 </script>
 <style scoped>
@@ -80,6 +115,11 @@ export default {
     margin-bottom: 10px;
 }
 
+.router_link {
+  text-decoration: none;
+  display: inline-block;
+}
+
 .click_button {
     /* margin-top: 15px; */
     margin:15px 10px 0px 10px;
@@ -91,6 +131,7 @@ export default {
     background:linear-gradient(to right,#beb7bb 0%,#131101e1 100%);
     border: 0;
     border-radius: 15px;
+    cursor: pointer;
 }
 .click_button:hover {
     background:linear-gradient(to right,#f3097e 0%,#e6d813e1 100%);

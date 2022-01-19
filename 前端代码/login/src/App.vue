@@ -1,7 +1,6 @@
 <template>
 <div>
-  <Login />
-  <Signup />
+    <router-view></router-view>
 </div>
 </template>
 

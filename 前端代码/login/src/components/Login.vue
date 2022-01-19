@@ -14,7 +14,7 @@
           </div>
     </div>
       <button @click="login" class="click_button">登录</button>
-      <button @click="signin" class="click_button">注册</button>
+      <router-link class="click_button router_link" to="/signup">注册</router-link>
   </div>
 </div>
 </template>
@@ -31,12 +31,12 @@ export default {
   },
   methods:{
     login: function() {
-      axios.get('http://localhost:9000/login/api/login', {
+      axios.get('/login/api/login', {
         params: {
           username: this.username,
           password: this.password
         }
-      })
+      }).then(res => console.log(res))
     }
   }
 }
@@ -73,6 +73,11 @@ export default {
     color: rgb(22, 21, 21);
 }
 
+.router_link {
+  text-decoration: none;
+  display: inline-block;
+}
+
 .click_button {
     /* margin-top: 15px; */
     margin:15px 10px 0px 10px;
@@ -84,6 +89,7 @@ export default {
     background:linear-gradient(to right,#beb7bb 0%,#131101e1 100%);
     border: 0;
     border-radius: 15px;
+    cursor: pointer;
 }
 .click_button:hover {
     background:linear-gradient(to right,#f3097e 0%,#e6d813e1 100%);
