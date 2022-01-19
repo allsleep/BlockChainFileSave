@@ -2,6 +2,7 @@ package com.controller;
 
 import com.CommonMethods.IdWorker;
 import com.alibaba.fastjson.JSONObject;
+import com.pojo.LoginInfo;
 import com.pojo.Result;
 import com.pojo.StatusCode;
 import com.receive.receiveBody;
@@ -43,9 +44,9 @@ public class LoginController {
             return new Result(false, StatusCode.LOGIN_ERROR, "用户不存在");
         if (loginService.login(username, password)) {
             JSONObject json = new JSONObject();
-            json.put("token", loginService.getToken(
-                    loginService.getUserInfo(loginService.getUser(username).getAccountId())
-            ));
+            LoginInfo userInfo = loginService.getUserInfo(loginService.getUser(username).getAccountId());
+            json.put("token", loginService.getToken(userInfo));
+            json.put("body", userInfo);
             return new Result(true,StatusCode.OK,"登录成功", json);
         }
         else
