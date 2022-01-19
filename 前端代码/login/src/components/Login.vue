@@ -13,9 +13,9 @@
               <input type="text" placeholder="请输入密码" v-model="password">
           </div>
     </div>
-  </div>
       <button @click="login" class="click_button">登录</button>
       <button @click="signin" class="click_button">注册</button>
+  </div>
 </div>
 </template>
 
