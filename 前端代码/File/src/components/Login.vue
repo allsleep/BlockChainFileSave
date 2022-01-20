@@ -13,30 +13,45 @@
               <input type="text" placeholder="请输入密码" v-model="password">
           </div>
     </div>
-      <button @click="login" class="click_button">登录</button>
-      <router-link class="click_button router_link" to="/signup">注册</router-link>
+      <button @click="login" class="click_button" to="/layout">登录</button>
+      <router-link class="click_button router_link" to="/login/signup">注册</router-link>
   </div>
 </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'Login',
   data: function(){
     return {
         username: "",
         password: "",
+        check: false
     }
   },
   methods:{
     login: function() {
-      axios.get('/login/api/login', {
-        params: {
-          username: this.username,
-          password: this.password
-        }
-      }).then(res => console.log(res))
+      var mes = ""
+      if (this.username == "" || this.password == ""){
+        mes = "用户名密码为空"
+        this.check = true
+        alert(mes)
+        return
+      }
+
+      // axios.get('/login/api/login', {
+      //   params: {
+      //     username: this.username,
+      //     password: this.password
+      //   }
+      // }).then(res => console.log(res))
+      this.$router.push('/layout')
+      // if (!this.check){
+      //   this.$router.push('/layout')
+      // }else{
+      //   alert("路由错误")
+      //   return
+      // }
     }
   }
 }

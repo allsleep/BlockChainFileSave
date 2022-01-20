@@ -54,11 +54,10 @@ export default {
                 "phoneNumber": this.phoneNumber,
                 "username": this.username
             }
-            this.$axios.post("/login/api/signup", put_data)
-              .then(res => {
-                  alert(res.data.message)
-              })
-            
+            // this.$axios.post("/login/api/signup", put_data)
+            //   .then(res => {
+            //       alert(res.data.message)
+            //   })
         },
         clearData: function(){
             this.accountId = ""

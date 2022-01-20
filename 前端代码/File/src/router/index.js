@@ -1,6 +1,8 @@
 import VueRouter from "vue-router"
+import FileUpload from '../components/FileUpload'
 import Login from "../components/Login"
 import Signup from "../components/Signup"
+import Layout from "../components/Layout"
 
 export default new VueRouter({
     routes: [
@@ -9,8 +11,16 @@ export default new VueRouter({
             component: Login
         },
         {
-            path: "/signup",
+            path: "/login/signup",
             component: Signup
+        },
+        {
+            path: "/layout",
+            component: Layout
+        },
+        {
+            path: "/layout/fileup",
+            component: FileUpload
         },
         { 
             path: '*', 

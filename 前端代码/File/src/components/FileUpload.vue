@@ -1,8 +1,11 @@
 <template>
-    <div>
-        <div>{{message}}</div>
+    <div class="fileBase">
+        <!-- <div>{{message}}</div> -->
         <div class="upload-file">
-            <input type="file" ref="clearFile" @change="getFile($event)" multiple="multiplt" class="add-file-right-input" accept=".docx,.doc,.pdf,.jpg,.png">
+            <div id="selectFile">
+                <label>选择文件：</label>
+                <input type="file" ref="clearFile" @change="getFile($event)" multiple="multiplt" accept=".docx,.doc,.pdf,.jpg,.png">
+            </div>
             <br/><span>支持扩展名：.doc .docx .pdf </span>
             <button type="primary" @click="submitAddFile">开始上传</button>
             <button @click="resetAdd">全部删除</button>
@@ -119,5 +122,8 @@ export default {
 </script>
 
 <style>
-
+.fileBase {
+    padding-left: 35%;
+    padding-top: 10%;
+}
 </style>
