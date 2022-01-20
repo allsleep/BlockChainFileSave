@@ -18,12 +18,11 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
     name: 'FileUpload',
     data(){
         return {
-            message: [],
+            fileList: [],
             addArr: [],
             addType: 'addType',
             addId: 'addType',
@@ -32,9 +31,16 @@ export default {
         }
     },
     mounted() {
-        axios.get('http://localhost:8001/list')
-        .then(response => {
-            this.message = response.data.data
+        this.$axios.get('/file/api/bucketList',
+        {params:{}}
+        )
+        .then(res => {
+            if (res.data.code === "2000"){
+
+            }else{
+                console.log(res)
+                this.fileList = res.data.data
+            }
         })
         .catch(error => {console.log(error)})
     },
@@ -80,8 +86,8 @@ export default {
                     'Content-Type': 'multipart/form-data',
                     // 'Authorization': this.token
                 }
-        };
-            axios.post('http://localhost:8001/upload', formData, config)
+            };
+            this.$axios.post('/file/api/upload', formData, config)
             .then((response) => {
                     var message = response['data']['message'];
                     alert(message)
@@ -95,8 +101,8 @@ export default {
         },
         download(){
             console.log('call download')
-            axios
-            .get('http://localhost:8001/download/' + this.downloadFileName,{responseType: 'blob'})
+            this.$axios
+            .get('file/api/download/' + this.downloadFileName,{responseType: 'blob'})
             .then((res) => {
                 console.log(res.data)
                 let blob = new Blob([res.data], {
@@ -111,7 +117,7 @@ export default {
                 // 5.释放这个临时的对象url
                 window.URL.revokeObjectURL(url);
             })
-        .catch((error) => {
+            .catch((error) => {
                 console.log(error);
             })
         },

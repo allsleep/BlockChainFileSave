@@ -32,9 +32,9 @@ spring:
             - Path=/login/**
 
         - id: file
-            uri: lb://file
-            predicates:
-              - Path=/file/**
+          uri: lb://file
+          predicates:
+            - Path=/file/**
 
 server:
   port: 80

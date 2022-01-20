@@ -25,7 +25,7 @@
               <input type="text" placeholder="请输入手机号码" v-model="phoneNumber">
             </div>
       </div>
-        <router-link @click.native="putData" class="click_button router_link" to="/login">提交</router-link>
+        <button @click="putData" class="click_button">提交</button>
         <button @click="clearData" class="click_button">清空</button>
     </div>
 </div>
@@ -54,10 +54,16 @@ export default {
                 "phoneNumber": this.phoneNumber,
                 "username": this.username
             }
-            // this.$axios.post("/login/api/signup", put_data)
-            //   .then(res => {
-            //       alert(res.data.message)
-            //   })
+            this.$axios.post("/login/api/signup", put_data)
+              .then(res => {
+                console.log(res)
+                if(res.data.code == "2000"){
+                  alert(res.data.message)
+                  this.$router.push("/login")
+                }else{
+                  alert(res.data.message)
+                }
+              })
         },
         clearData: function(){
             this.accountId = ""

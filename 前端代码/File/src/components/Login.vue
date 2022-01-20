@@ -31,27 +31,28 @@ export default {
   },
   methods:{
     login: function() {
-      var mes = ""
       if (this.username == "" || this.password == ""){
-        mes = "用户名密码为空"
         this.check = true
-        alert(mes)
+        alert("用户名或密码为空")
         return
       }
 
-      // axios.get('/login/api/login', {
-      //   params: {
-      //     username: this.username,
-      //     password: this.password
-      //   }
-      // }).then(res => console.log(res))
-      this.$router.push('/layout')
-      // if (!this.check){
-      //   this.$router.push('/layout')
-      // }else{
-      //   alert("路由错误")
-      //   return
-      // }
+      this.$axios.get('/login/api/login', {
+        params: {
+          username: this.username,
+          password: this.password
+        }
+      }).then(res => {
+        if(res.data.code == "2000"){
+          sessionStorage.setItem('accountId', res.data.data.body.accountId)
+          sessionStorage.setItem('token', res.data.data.token)
+          this.$router.push('/layout')
+        }else{
+          alert("登录失败")
+          this.password = ""
+          return
+        }
+      })
     }
   }
 }

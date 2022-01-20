@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
@@ -53,12 +55,12 @@ public class MinioController {
 
     //上传文件
     @PostMapping("/upload")
-    public com.pojo.Result<Object> upload(@RequestBody ReceiveBody rec){
-        if (rec.getFile() == null || rec.getFile().length == 0) {
-            return new com.pojo.Result<Object> (false, StatusCode.ERROR, "文件大小为0");
-        }
-
-        int res_state = minioService.upload(rec.getFile(), rec.getAccountId());
+    public com.pojo.Result<Object> upload(@RequestParam("file") MultipartFile[] file){
+//        if (rec.getFile() == null || rec.getFile().length == 0) {
+//            return new com.pojo.Result<Object> (false, StatusCode.ERROR, "文件大小为0");
+//        }
+        log.info(String.valueOf(file.length));
+        int res_state = minioService.upload(file, "1484206213867503616");
 
         if (res_state == 0)
             return new com.pojo.Result<Object> (true, StatusCode.OK, "上传成功");
