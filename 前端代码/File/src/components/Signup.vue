@@ -54,16 +54,17 @@ export default {
                 "phoneNumber": this.phoneNumber,
                 "username": this.username
             }
-            this.$axios.post("/login/api/signup", put_data)
-              .then(res => {
-                console.log(res)
-                if(res.data.code == "2000"){
-                  alert(res.data.message)
-                  this.$router.push("/login")
-                }else{
-                  alert(res.data.message)
-                }
-              })
+            this.$router.push("/login")
+            // this.$axios.post("/login/api/signup", put_data)
+            //   .then(res => {
+            //     console.log(res)
+            //     if(res.data.code == "2000"){
+            //       alert(res.data.message)
+            //       this.$router.push("/login")
+            //     }else{
+            //       alert(res.data.message)
+            //     }
+            //   })
         },
         clearData: function(){
             this.accountId = ""

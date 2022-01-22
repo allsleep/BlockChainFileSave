@@ -2,17 +2,15 @@
     <div class="fileBase">
         <!-- <div>{{message}}</div> -->
         <div class="upload-file">
-            <div id="selectFile">
-                <label>选择文件：</label>
-                <input type="file" ref="clearFile" @change="getFile($event)" multiple="multiplt" accept=".docx,.doc,.pdf,.jpg,.png">
-            </div>
-            <br/><span>支持扩展名：.doc .docx .pdf </span>
-            <button type="primary" @click="submitAddFile">开始上传</button>
-            <button @click="resetAdd">全部删除</button>
+            <div class="file">选择文件
+            <input type="file" ref="clearFile" @change="getFile($event)" multiple="multiplt" accept=".docx,.doc,.pdf,.jpg,.png"></div><br/>
+            <button type="primary" class="click_button" @click="submitAddFile">开始上传</button>
+            <button @click="resetAdd" class="click_button">全部删除</button>
+            <br /><span style="color: lightgray; ">支持扩展名：.doc .docx .pdf </span>
         </div>
         <div class="download-file">
             <input v-model="downloadFileName" type="text"/>
-            <button @click="download">下载按钮</button>
+            <button @click="download" class="click_button" style="margin-left: 15px;">下载按钮</button>
         </div>
     </div>
 </template>
@@ -31,18 +29,18 @@ export default {
         }
     },
     mounted() {
-        this.$axios.get('/file/api/bucketList',
-        {params:{}}
-        )
-        .then(res => {
-            if (res.data.code === "2000"){
+        // this.$axios.get('/file/api/bucketList',
+        // {params:{}}
+        // )
+        // .then(res => {
+        //     if (res.data.code === "2000"){
 
-            }else{
-                console.log(res)
-                this.fileList = res.data.data
-            }
-        })
-        .catch(error => {console.log(error)})
+        //     }else{
+        //         console.log(res)
+        //         this.fileList = res.data.data
+        //     }
+        // })
+        // .catch(error => {console.log(error)})
     },
     methods: {
         getFile(event){
@@ -66,32 +64,31 @@ export default {
             }
         },
         submitAddFile(){
-            // if(0 == this.addArr.length){
-            //     this.$message({
-            //     type: 'info',
-            //     message: '请选择要上传的文件'
-            // });
-            //     return;
-            // }
+            if(0 == this.addArr.length){
+                alert("请选择文件")
+                return
+            }
+            
 
             var formData = new FormData();
             formData.append('num', this.addType);
             formData.append('linkId',this.addId);
             formData.append('rfilename',this.addFileName);
+            formData.append('accountId', sessionStorage.getItem('accountId'))
             for(var i=0; i<this.addArr.length;i++){
                 formData.append('file',this.addArr[i]);
             }
             let config = {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    // 'Authorization': this.token
+                    'token': sessionStorage.getItem('token')
                 }
             };
             this.$axios.post('/file/api/upload', formData, config)
-            .then((response) => {
-                    var message = response['data']['message'];
+            .then((res) => {
+                    var message = res.data.message;
                     alert(message)
-                    console.log("调用接口", response['data'])
+                    console.log("调用接口", res.data)
                 }
             )
         },
@@ -129,7 +126,56 @@ export default {
 
 <style>
 .fileBase {
-    padding-left: 35%;
-    padding-top: 10%;
+    margin: auto;
+    margin-left: 40%;
+    margin-top: 20%;
+    /* text-align: center; */
+    
+}
+
+.file {
+    position: relative;
+    display: inline-block;
+    background:linear-gradient(to right,#beb7bb 0%,#131101e1 100%);
+    border: 0;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    margin:15px 10px 0px 10px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background:linear-gradient(to right,#f3097e 0%,#e6d813e1 100%);    border-color: white;
+    color: #004974;
+    text-decoration: none;
+}
+
+.click_button {
+    position: relative;
+    display: inline-block;
+    background:linear-gradient(to right,#beb7bb 0%,#131101e1 100%);
+    border: 0;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    margin:15px 10px 0px 10px;
+}
+
+.click_button:hover {
+    background:linear-gradient(to right,#f3097e 0%,#e6d813e1 100%);
 }
 </style>

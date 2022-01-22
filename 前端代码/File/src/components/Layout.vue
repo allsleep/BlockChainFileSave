@@ -27,5 +27,5 @@ export default {
 </script>
 
 <style>
-    @import "../css/layui.css";
+@import "../css/layui.css";
 </style>

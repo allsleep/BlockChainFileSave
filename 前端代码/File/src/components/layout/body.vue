@@ -21,12 +21,12 @@
       </div>
       <br><br>
     </div> -->
-    <FileUpload />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import FileUpload from '../FileUpload'
+import FileUpload from '../body/FileUpload'
 export default {
     name: "LayoutBody",
     components: {
