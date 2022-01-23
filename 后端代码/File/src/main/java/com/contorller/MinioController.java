@@ -55,15 +55,16 @@ public class MinioController {
 
     //上传文件
     @PostMapping("/upload")
-    public com.pojo.Result<Object> upload(@RequestParam("file") MultipartFile[] file){
-//        if (rec.getFile() == null || rec.getFile().length == 0) {
-//            return new com.pojo.Result<Object> (false, StatusCode.ERROR, "文件大小为0");
-//        }
+    public com.pojo.Result<Object> upload(@RequestParam("file") MultipartFile[] file,
+                                          @RequestParam("accountId") String accountId){
+        if (file == null || file.length == 0) {
+            return new com.pojo.Result<Object> (false, StatusCode.ERROR, "文件大小为0");
+        }
         log.info(String.valueOf(file.length));
-        int res_state = minioService.upload(file, "1484206213867503616");
+        List res = minioService.upload(file, accountId);
 
-        if (res_state == 0)
-            return new com.pojo.Result<Object> (true, StatusCode.OK, "上传成功");
+        if (res.size() != 0)
+            return new com.pojo.Result<Object> (true, StatusCode.OK, "上传成功", res);
         else
             return new com.pojo.Result<Object> (false, StatusCode.ERROR, "上传失败");
     }

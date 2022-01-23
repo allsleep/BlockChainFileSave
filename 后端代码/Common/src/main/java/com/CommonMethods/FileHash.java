@@ -1,5 +1,7 @@
 package com.CommonMethods;
 import org.apache.commons.codec.digest.DigestUtils;
+
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,8 +19,7 @@ public class FileHash {
 //        return res;
 //    }
 
-    public static  String getFileId(String accountId,String MD5){
-        byte[] bytes = DigestUtils.sha3_224(accountId + MD5);
-        return new String(bytes);
+    public static  String getFileId(String accountId, String MD5)  {
+        return DigestUtils.sha3_224Hex(accountId + MD5);
     }
 }

@@ -26,20 +26,19 @@ public abstract class CommonClient {
 
     private Map<String, Object> contractMap = new ConcurrentHashMap<>();
 
-    @SuppressWarnings("unchecked")
-    public <T> void deploy(String contractName, Class<T> clazz, BcosSDK sdk) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, NetworkException {
-        // 为群组初始化client
-        Client client = sdk.getClient();
-        // 向群组部署合约
-        CryptoKeyPair cryptoKeyPair = client.getCryptoSuite().getCryptoKeyPair();
-        Method method = clazz.getMethod("deploy", Client.class, CryptoKeyPair.class);
-        T result = (T) method.invoke(null, new Object[]{client, cryptoKeyPair});
-
-        log.info("执行CommonClient的deploy方法");
-        log.info("部署合约成功:{}" + contractName, result);
-
-        contractMap.put(contractName, result);
-    }
+//    @SuppressWarnings("unchecked")
+//    public <T> void deploy(String contractName, Class<T> clazz, BcosSDK sdk) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, NetworkException {
+//        // 为群组初始化client
+//        Client client = sdk.getClient();
+//        // 向群组部署合约
+//        CryptoKeyPair cryptoKeyPair = client.getCryptoSuite().getCryptoKeyPair();
+//        Method method = clazz.getMethod("deploy", Client.class, CryptoKeyPair.class);
+//        T result = (T) method.invoke(null, new Object[]{client, cryptoKeyPair});
+//        log.info("执行CommonClient的deploy方法");
+//        log.info("部署合约成功:{}" + contractName, result);
+//
+//        contractMap.put(contractName, result);
+//    }
 
     public Object getContractMap(String contractName) {
         if (getContractMap().containsKey(contractName)) {

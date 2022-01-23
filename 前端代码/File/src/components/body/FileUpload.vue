@@ -1,22 +1,34 @@
 <template>
+<div>
+    <h1 style="margin-left: 41%; margin-top:8%">上传文件上链</h1>
     <div class="fileBase">
         <!-- <div>{{message}}</div> -->
         <div class="upload-file">
-            <div class="file">选择文件
-            <input type="file" ref="clearFile" @change="getFile($event)" multiple="multiplt" accept=".docx,.doc,.pdf,.jpg,.png"></div><br/>
-            <button type="primary" class="click_button" @click="submitAddFile">开始上传</button>
+            <table id="file-box">
+                <input type="text" disabled="disabled" value="选择文件" v-show="addArr.length == 0">
+                <input v-for="(item, i) in addArr" type="text" :key="i" disabled="disabled" v-model="item.name" />
+                <div class="file">选择文件
+                    <input type="file" ref="clearFile" @change="getFile($event)" multiple="multiplt" accept=".docx,.doc,.pdf,.jpg,.png">
+                </div><br/>
+            </table>
+            <span style="color: lightgray; margin-left: 2%">支持扩展名：.doc .docx .pdf .png</span><br />
+            <div>
+                <br/> <label>选择是否上链:</label><br/><br/>
+                <label style="margin-left: 8%;">上链<input type="radio" name="blockchain" @change="putchain"/></label>
+                <label style="margin-left: 5%;">不上链<input type="radio" name="blockchain" @change="notchain" checked="true"/></label>
+            </div><br>
+            <button type="primary" class="click_button" @click="submitAddFile" style="margin-left: 0px;">开始上传</button>
             <button @click="resetAdd" class="click_button">全部删除</button>
-            <br /><span style="color: lightgray; ">支持扩展名：.doc .docx .pdf </span>
-        </div>
-        <div class="download-file">
-            <input v-model="downloadFileName" type="text"/>
-            <button @click="download" class="click_button" style="margin-left: 15px;">下载按钮</button>
-        </div>
+            <button @click="download" class="click_button">下载文件</button>
+        </div><br/>
     </div>
+</div>
 </template>
 
 <script>
+import Layout from '../Layout.vue';
 export default {
+    components: { Layout },
     name: 'FileUpload',
     data(){
         return {
@@ -25,7 +37,8 @@ export default {
             addType: 'addType',
             addId: 'addType',
             addFileName: 'addType',
-            downloadFileName: ''
+            downloadFileName: '',
+            ischain: false
         }
     },
     mounted() {
@@ -63,13 +76,13 @@ export default {
                 }
             }
         },
-        submitAddFile(){
+        async submitAddFile(){
             if(0 == this.addArr.length){
                 alert("请选择文件")
                 return
             }
-            
-
+            let fileId = ''
+            let fileMD5 = ''
             var formData = new FormData();
             formData.append('num', this.addType);
             formData.append('linkId',this.addId);
@@ -84,13 +97,23 @@ export default {
                     'token': sessionStorage.getItem('token')
                 }
             };
-            this.$axios.post('/file/api/upload', formData, config)
+
+            await this.$axios.post('/file/api/upload', formData, config)
             .then((res) => {
                     var message = res.data.message;
                     alert(message)
                     console.log("调用接口", res.data)
+                    fileId = res.data.data[0].fileId;
+                    fileMD5 = res.data.data[0].fileMD5;
+                    if(this.ischain){
+                    this.executeBlockChain(fileId, fileMD5);
+                        console.log('调用')
+                    }
                 }
-            )
+            ).catch((err) => {console.log(err);return})
+
+
+            // this.$router.push('/putfileresult')
         },
         resetAdd(){
             this.addArr = []
@@ -118,6 +141,30 @@ export default {
                 console.log(error);
             })
         },
+        putchain() {
+            this.ischain = true;
+        },
+        notchain() {
+            this.ischain = false;
+        },
+        executeBlockChain(fileId, fileMD5){
+            console.log("上链")
+            let data = {
+                fileId: fileId,
+                fileMD5: fileMD5
+            }
+            let config = {
+                headers: {
+                    // 'Content-Type': ' application/json',
+                    'token': sessionStorage.getItem('token')
+                }
+            }
+            this.$axios.post("http://localhost:40001/blockchain/api/upload", data, config)
+            .then(res => {
+                console.log(res)
+                console.log("hello")
+            }).catch((error) => console.log(error))
+        }
     }
 
 
@@ -128,9 +175,19 @@ export default {
 .fileBase {
     margin: auto;
     margin-left: 40%;
-    margin-top: 20%;
+    margin-top: 8%;
     /* text-align: center; */
     
+}
+
+#file-box{
+    height: 25px;
+    line-height: 15px;
+    vertical-align: middle;
+}
+
+#file-box > input {
+    width: 200px;
 }
 
 .file {
@@ -145,9 +202,10 @@ export default {
     text-decoration: none;
     text-indent: 0;
     line-height: 20px;
-    margin:15px 10px 0px 10px;
+    margin:0px 0px 0px 20px;
+    vertical-align: middle;
 }
-.file input {
+.file > input {
     position: absolute;
     font-size: 100px;
     right: 0;
@@ -172,7 +230,7 @@ export default {
     text-decoration: none;
     text-indent: 0;
     line-height: 20px;
-    margin:15px 10px 0px 10px;
+    margin:15px 10px 0px 15px;
 }
 
 .click_button:hover {

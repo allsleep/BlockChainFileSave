@@ -4,7 +4,7 @@
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree" lay-filter="test">
         <li class="layui-nav-item layui-nav-itemed">
-          <router-link to="/userinfo">个人资料</router-link>
+          <router-link to="/userinfo">修改资料</router-link>
           <!-- <dl class="layui-nav-child">
             <dd><a href="javascript:;">个人资料详情</a></dd>
             <dd><a href="javascript:;">menu 2</a></dd>

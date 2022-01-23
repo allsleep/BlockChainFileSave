@@ -1,0 +1,12 @@
+info|2022-01-23 20:04:34.819118|[WS][SERVICE],[NEWOBJ][WsService]=0x7f9f9c27cc18
+info|2022-01-23 20:04:34.821648|[WS][INITIALIZER][initWsService]start websocket service as client,connected size=2
+info|2022-01-23 20:04:34.821665|[WS][INITIALIZER][initWsService]initializer for websocket service,listenIP=,listenPort=0,disableSsl=false,server=false,client=true,threadPoolSize=8,msgTimeOut=-1,connected peers=2
+info|2022-01-23 20:04:34.821698|[bcos_sdk_create][NEWOBJ],sdk=0x7f9fa1b3c4c0
+debug|2022-01-23 20:04:35.711339|[WS][SERVICE][connectOnce]try to connect to peer,endpoint=127.0.0.1:20200
+debug|2022-01-23 20:04:35.711524|[WS][SERVICE][connectOnce]try to connect to peer,endpoint=127.0.0.1:20201
+trace|2022-01-23 20:04:35.711593|[WS][CONNECTOR][connectToWsServer]async_resolve success,host=127.0.0.1,port=20200
+trace|2022-01-23 20:04:35.711847|[WS][CONNECTOR][connectToWsServer]async_resolve success,host=127.0.0.1,port=20201
+trace|2022-01-23 20:04:35.711987|[WS][CONNECTOR][connectToWsServer]async_connect success,host=127.0.0.1,port=20200
+trace|2022-01-23 20:04:35.712201|[WS][CONNECTOR][connectToWsServer]async_connect success,host=127.0.0.1,port=20201
+warning|2022-01-23 20:04:35.714130|[WS][CONNECTOR][connectToWsServer]ssl async_handshake failed,host=127.0.0.1,port=20200,error=invalid padding
+warning|2022-01-23 20:04:35.714391|[WS][CONNECTOR][connectToWsServer]ssl async_handshake failed,host=127.0.0.1,port=20201,error=invalid padding

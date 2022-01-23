@@ -1,0 +1,135 @@
+info|2022-01-23 19:21:44.476115|[WS][SERVICE],[NEWOBJ][WsService]=0x7fca77cbc218
+info|2022-01-23 19:21:44.479297|[WS][INITIALIZER][initWsService]start websocket service as client,connected size=2
+info|2022-01-23 19:21:44.479350|[WS][INITIALIZER][initWsService]initializer for websocket service,listenIP=,listenPort=0,disableSsl=false,server=false,client=true,threadPoolSize=8,msgTimeOut=-1,connected peers=2
+info|2022-01-23 19:21:44.479444|[bcos_sdk_create][NEWOBJ],sdk=0x7fca7b1b9050
+debug|2022-01-23 19:21:45.350295|[WS][SERVICE][connectOnce]try to connect to peer,endpoint=127.0.0.1:20200
+debug|2022-01-23 19:21:45.350385|[WS][SERVICE][connectOnce]try to connect to peer,endpoint=127.0.0.1:20201
+trace|2022-01-23 19:21:45.350458|[WS][CONNECTOR][connectToWsServer]async_resolve success,host=127.0.0.1,port=20200
+trace|2022-01-23 19:21:45.350710|[WS][CONNECTOR][connectToWsServer]async_resolve success,host=127.0.0.1,port=20201
+trace|2022-01-23 19:21:45.350837|[WS][CONNECTOR][connectToWsServer]async_connect success,host=127.0.0.1,port=20200
+trace|2022-01-23 19:21:45.351091|[WS][CONNECTOR][connectToWsServer]async_connect success,host=127.0.0.1,port=20201
+trace|2022-01-23 19:21:45.356484|[WS][CONNECTOR][connectToWsServer]ssl async_handshake success,host=127.0.0.1,port=20200
+info|2022-01-23 19:21:45.356908|[WS][CONNECTOR][connectToWsServer]websocket handshake successfully,host=127.0.0.1,port=20200
+info|2022-01-23 19:21:45.356927|[WS][SSL][STREAM],[NEWOBJ][WsStreamSslImpl]=0x7fca7b450c68
+info|2022-01-23 19:21:45.356933|[WS][SESSION],[NEWOBJ][WSSESSION]=0x7fca77ccf420
+info|2022-01-23 19:21:45.356969|[WS][SERVICE][newSession]start the session,endPoint=127.0.0.1:20200
+info|2022-01-23 19:21:45.356984|[WS][SERVICE][addSession]add session to mapping,connectedEndPoint=127.0.0.1:20200,endPoint=127.0.0.1:20200,result=true
+info|2022-01-23 19:21:45.356989|[WS][SERVICE][onConnect],endpoint=127.0.0.1:20200,connectedEndPoint=127.0.0.1:20200,refCount=6
+info|2022-01-23 19:21:45.357069|[RPCWS][SERVICE][startHandshake],endpoint=127.0.0.1:20200
+info|2022-01-23 19:21:45.357141|[WS][SESSION][startAsClient]websocket handshake successfully,endPoint=127.0.0.1:20200,session=0x7fca77ccf420
+trace|2022-01-23 19:21:45.357260|[WS][CONNECTOR][connectToWsServer]ssl async_handshake success,host=127.0.0.1,port=20201
+info|2022-01-23 19:21:45.357450|[WS][CONNECTOR][connectToWsServer]websocket handshake successfully,host=127.0.0.1,port=20201
+info|2022-01-23 19:21:45.357462|[WS][SSL][STREAM],[NEWOBJ][WsStreamSslImpl]=0x7fca7b61af28
+info|2022-01-23 19:21:45.357468|[WS][SESSION],[NEWOBJ][WSSESSION]=0x7fca78bda420
+info|2022-01-23 19:21:45.357478|[WS][SERVICE][newSession]start the session,endPoint=127.0.0.1:20201
+info|2022-01-23 19:21:45.357484|[WS][SERVICE][addSession]add session to mapping,connectedEndPoint=127.0.0.1:20201,endPoint=127.0.0.1:20201,result=true
+info|2022-01-23 19:21:45.357495|[WS][SERVICE][onConnect],endpoint=127.0.0.1:20201,connectedEndPoint=127.0.0.1:20201,refCount=6
+info|2022-01-23 19:21:45.357534|[RPCWS][SERVICE][startHandshake],endpoint=127.0.0.1:20201
+info|2022-01-23 19:21:45.357559|[WS][SESSION][startAsClient]websocket handshake successfully,endPoint=127.0.0.1:20201,session=0x7fca78bda420
+info|2022-01-23 19:21:45.357853|[RPCWS][SERVICE][fromJson]parser protocol version,protocolVersion=1,groupInfoList size=1
+info|2022-01-23 19:21:45.357875|[RPCWS][SERVICE][updateGroupInfoByEp],endPoint=127.0.0.1:20200,group=group,chainID=chain,genesisConfig={"blockTxCountLimit":1000,"consensusLeaderPeriod":1,"consensusType":"pbft","sealerList":[{"nodeID":"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1","weight":1},{"nodeID":"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8","weight":1},{"nodeID":"e619e259261fbfa73d8026c23a386cecd620e23c3ea13bc98a03ab7e6a9944f647cbcd63c1cf461ee7dc388dd31bb24d8faf1a757dec9524fb44b72decefc997","weight":1},{"nodeID":"0e7824d66f0de9fbc7e5907ccb9119200288ca4dec6d311b5cec9ce87865cfd81402acc88904fc1f96c269b09761d3189adf2403933364972d5b1047702cc356","weight":1}],"txGasLimit":300000000}
+,iniConfig=,nodesNum=1
+info|2022-01-23 19:21:45.357890|[RPCWS][SERVICE][updateGroupInfo],endPoint=127.0.0.1:20200,groupID=group,chainID=chain,nodesNum=1
+info|2022-01-23 19:21:45.357903|[RPCWS][SERVICE][clearGroupInfoByEp],endPoint=127.0.0.1:20200,groupID=group
+info|2022-01-23 19:21:45.357913|[RPCWS][SERVICE][printGroupInfo],total count=1
+info|2022-01-23 19:21:45.357918|[RPCWS][SERVICE][printGroupInfo]group list,group=group,count=1
+info|2022-01-23 19:21:45.357921|[RPCWS][SERVICE][printGroupInfo]node list,group=group,node=89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1,count=1
+info|2022-01-23 19:21:45.357965|[AMOP][CLIENT][updateTopicsToRemote]send subscribe message to server,endpoint=127.0.0.1:20200,topics={"topics":[]}
+info|2022-01-23 19:21:45.357973|[RPCWS][SERVICE][startHandshake]handshake successfully,endPoint=127.0.0.1:20200,handshake version=1,groupInfoList size=1,handshake string={"groupInfoList":[{"chainID":"chain","genesisConfig":"{\"blockTxCountLimit\":1000,\"consensusLeaderPeriod\":1,\"consensusType\":\"pbft\",\"sealerList\":[{\"nodeID\":\"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1\",\"weight\":1},{\"nodeID\":\"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8\",\"weight\":1},{\"nodeID\":\"e619e259261fbfa73d8026c23a386cecd620e23c3ea13bc98a03ab7e6a9944f647cbcd63c1cf461ee7dc388dd31bb24d8faf1a757dec9524fb44b72decefc997\",\"weight\":1},{\"nodeID\":\"0e7824d66f0de9fbc7e5907ccb9119200288ca4dec6d311b5cec9ce87865cfd81402acc88904fc1f96c269b09761d3189adf2403933364972d5b1047702cc356\",\"weight\":1}],\"txGasLimit\":300000000}\n","groupID":"group","iniConfig":"","nodeList":[{"iniConfig":"{\"binaryInfo\":{\"buildTime\":\"20211209 17:02:41\",\"gitCommitHash\":\"c0e9dadb6e7ad1bbaf3128a27803226fb7ba6a9a\",\"platform\":\"Darwin/appleclang\",\"version\":\"3.0.0-rc1\"},\"chainID\":\"chain\",\"gatewayServiceName\":\"\",\"groupID\":\"group\",\"isAuthCheck\":false,\"isWasm\":false,\"nodeID\":\"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1\",\"nodeName\":\"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1\",\"rpcServiceName\":\"\",\"smCryptoType\":false}\n","microService":false,"name":"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1","nodeID":"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1","serviceInfo":[{"serviceName":".","type":2},{"serviceName":".","type":3},{"serviceName":".","type":4},{"serviceName":".","type":5},{"serviceName":".","type":8}],"type":0}]}],"protocolVersion":1}
+info|2022-01-23 19:21:45.358066|[RPCWS][SERVICE][fromJson]parser protocol version,protocolVersion=1,groupInfoList size=1
+info|2022-01-23 19:21:45.358085|[RPCWS][SERVICE][updateGroupInfoByEp],endPoint=127.0.0.1:20201,group=group,chainID=chain,genesisConfig={"blockTxCountLimit":1000,"consensusLeaderPeriod":1,"consensusType":"pbft","sealerList":[{"nodeID":"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1","weight":1},{"nodeID":"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8","weight":1},{"nodeID":"e619e259261fbfa73d8026c23a386cecd620e23c3ea13bc98a03ab7e6a9944f647cbcd63c1cf461ee7dc388dd31bb24d8faf1a757dec9524fb44b72decefc997","weight":1},{"nodeID":"0e7824d66f0de9fbc7e5907ccb9119200288ca4dec6d311b5cec9ce87865cfd81402acc88904fc1f96c269b09761d3189adf2403933364972d5b1047702cc356","weight":1}],"txGasLimit":300000000}
+,iniConfig=,nodesNum=1
+info|2022-01-23 19:21:45.358091|[RPCWS][SERVICE][updateGroupInfo],endPoint=127.0.0.1:20201,groupID=group,chainID=chain,nodesNum=1
+info|2022-01-23 19:21:45.358096|[RPCWS][SERVICE][clearGroupInfoByEp],endPoint=127.0.0.1:20201,groupID=group
+info|2022-01-23 19:21:45.358104|[RPCWS][SERVICE][printGroupInfo],total count=1
+info|2022-01-23 19:21:45.358109|[RPCWS][SERVICE][printGroupInfo]group list,group=group,count=2
+info|2022-01-23 19:21:45.358116|[RPCWS][SERVICE][printGroupInfo]node list,group=group,node=381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8,count=1
+info|2022-01-23 19:21:45.358119|[RPCWS][SERVICE][printGroupInfo]node list,group=group,node=89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1,count=1
+info|2022-01-23 19:21:45.358165|[AMOP][CLIENT][updateTopicsToRemote]send subscribe message to server,endpoint=127.0.0.1:20201,topics={"topics":[]}
+info|2022-01-23 19:21:45.358174|[RPCWS][SERVICE][startHandshake]handshake successfully,endPoint=127.0.0.1:20201,handshake version=1,groupInfoList size=1,handshake string={"groupInfoList":[{"chainID":"chain","genesisConfig":"{\"blockTxCountLimit\":1000,\"consensusLeaderPeriod\":1,\"consensusType\":\"pbft\",\"sealerList\":[{\"nodeID\":\"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1\",\"weight\":1},{\"nodeID\":\"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8\",\"weight\":1},{\"nodeID\":\"e619e259261fbfa73d8026c23a386cecd620e23c3ea13bc98a03ab7e6a9944f647cbcd63c1cf461ee7dc388dd31bb24d8faf1a757dec9524fb44b72decefc997\",\"weight\":1},{\"nodeID\":\"0e7824d66f0de9fbc7e5907ccb9119200288ca4dec6d311b5cec9ce87865cfd81402acc88904fc1f96c269b09761d3189adf2403933364972d5b1047702cc356\",\"weight\":1}],\"txGasLimit\":300000000}\n","groupID":"group","iniConfig":"","nodeList":[{"iniConfig":"{\"binaryInfo\":{\"buildTime\":\"20211209 17:02:41\",\"gitCommitHash\":\"c0e9dadb6e7ad1bbaf3128a27803226fb7ba6a9a\",\"platform\":\"Darwin/appleclang\",\"version\":\"3.0.0-rc1\"},\"chainID\":\"chain\",\"gatewayServiceName\":\"\",\"groupID\":\"group\",\"isAuthCheck\":false,\"isWasm\":false,\"nodeID\":\"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8\",\"nodeName\":\"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8\",\"rpcServiceName\":\"\",\"smCryptoType\":false}\n","microService":false,"name":"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8","nodeID":"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8","serviceInfo":[{"serviceName":".","type":2},{"serviceName":".","type":3},{"serviceName":".","type":4},{"serviceName":".","type":5},{"serviceName":".","type":8}],"type":0}]}],"protocolVersion":1}
+info|2022-01-23 19:21:45.455024|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-23 19:21:45.455101|[WS][SERVICE][start]start websocket service successfully,model=1
+info|2022-01-23 19:21:45.560151|[RPCWS][SERVICE][waitForConnectionEstablish]wait for websocket connection handshake success,suc count=2
+info|2022-01-23 19:21:45.560186|[RPC][IMPL][start]start rpc
+info|2022-01-23 19:21:45.560192|[WS][SERVICE][start]websocket service is running
+info|2022-01-23 19:21:45.663823|[RPCWS][SERVICE][waitForConnectionEstablish]wait for websocket connection handshake success,suc count=2
+info|2022-01-23 19:21:45.663896|[AMOP][CLIENT][start]start amop
+info|2022-01-23 19:21:45.663929|[WS][SERVICE][start]websocket service is running
+info|2022-01-23 19:21:45.768688|[RPCWS][SERVICE][waitForConnectionEstablish]wait for websocket connection handshake success,suc count=2
+info|2022-01-23 19:21:45.768809|[EVENT][SUB][start]start event sub successfully,sendMsgTimeout=-1,reconnectPeriod=20000
+info|2022-01-23 19:21:45.768894|[WS][SERVICE][start]websocket service is running
+info|2022-01-23 19:21:45.873185|[RPCWS][SERVICE][waitForConnectionEstablish]wait for websocket connection handshake success,suc count=2
+info|2022-01-23 19:21:45.873208|[bcos_sdk_start],sdk=0x7fca7b1b9050
+info|2022-01-23 19:21:45.874171|[findClass]add class to cache,fullClassName=org/fisco/bcos/sdk/jni/common/Response
+info|2022-01-23 19:21:45.874188|[RPCWS][SERVICE][getGroupInfo],count=2
+info|2022-01-23 19:21:45.874669|[RPC][IMPL][getGroupInfo][get group info from cache],hitCache=true,response={"id":1,"jsonrpc":"2.0","result":{"chainID":"chain","genesisConfig":"{\"blockTxCountLimit\":1000,\"consensusLeaderPeriod\":1,\"consensusType\":\"pbft\",\"sealerList\":[{\"nodeID\":\"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1\",\"weight\":1},{\"nodeID\":\"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8\",\"weight\":1},{\"nodeID\":\"e619e259261fbfa73d8026c23a386cecd620e23c3ea13bc98a03ab7e6a9944f647cbcd63c1cf461ee7dc388dd31bb24d8faf1a757dec9524fb44b72decefc997\",\"weight\":1},{\"nodeID\":\"0e7824d66f0de9fbc7e5907ccb9119200288ca4dec6d311b5cec9ce87865cfd81402acc88904fc1f96c269b09761d3189adf2403933364972d5b1047702cc356\",\"weight\":1}],\"txGasLimit\":300000000}\n","groupID":"group","iniConfig":"","nodeList":[{"iniConfig":"{\"binaryInfo\":{\"buildTime\":\"20211209 17:02:41\",\"gitCommitHash\":\"c0e9dadb6e7ad1bbaf3128a27803226fb7ba6a9a\",\"platform\":\"Darwin/appleclang\",\"version\":\"3.0.0-rc1\"},\"chainID\":\"chain\",\"gatewayServiceName\":\"\",\"groupID\":\"group\",\"isAuthCheck\":false,\"isWasm\":false,\"nodeID\":\"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8\",\"nodeName\":\"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8\",\"rpcServiceName\":\"\",\"smCryptoType\":false}\n","name":"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8","serviceInfo":[{"serviceName":".","type":2},{"serviceName":".","type":3},{"serviceName":".","type":4},{"serviceName":".","type":5},{"serviceName":".","type":8}],"type":0},{"iniConfig":"{\"binaryInfo\":{\"buildTime\":\"20211209 17:02:41\",\"gitCommitHash\":\"c0e9dadb6e7ad1bbaf3128a27803226fb7ba6a9a\",\"platform\":\"Darwin/appleclang\",\"version\":\"3.0.0-rc1\"},\"chainID\":\"chain\",\"gatewayServiceName\":\"\",\"groupID\":\"group\",\"isAuthCheck\":false,\"isWasm\":false,\"nodeID\":\"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1\",\"nodeName\":\"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1\",\"rpcServiceName\":\"\",\"smCryptoType\":false}\n","name":"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1","serviceInfo":[{"serviceName":".","type":2},{"serviceName":".","type":3},{"serviceName":".","type":4},{"serviceName":".","type":5},{"serviceName":".","type":8}],"type":0}]}}
+trace|2022-01-23 19:21:45.890815|[RPCWS][SERVICE][getEndPointsByGroup],group=group,endPoints=2
+debug|2022-01-23 19:21:45.890898|[RPC][IMPL][genericMethod],group=group,nodeName=,request={"jsonrpc":"2.0","method":"getBlockNumber","params":["group",""],"id":1}
+info|2022-01-23 19:21:46.311957|[WS][SERVICE][start]websocket service is running
+info|2022-01-23 19:21:46.414261|[RPCWS][SERVICE][waitForConnectionEstablish]wait for websocket connection handshake success,suc count=2
+info|2022-01-23 19:21:46.414331|[RPC][IMPL][start]start rpc
+info|2022-01-23 19:21:46.414343|[WS][SERVICE][start]websocket service is running
+info|2022-01-23 19:21:46.519240|[RPCWS][SERVICE][waitForConnectionEstablish]wait for websocket connection handshake success,suc count=2
+info|2022-01-23 19:21:46.519303|[AMOP][CLIENT][start]start amop
+info|2022-01-23 19:21:46.519311|[EVENT][SUB][start]event sub is running
+info|2022-01-23 19:21:46.519317|[WS][SERVICE][start]websocket service is running
+info|2022-01-23 19:21:46.622525|[RPCWS][SERVICE][waitForConnectionEstablish]wait for websocket connection handshake success,suc count=2
+info|2022-01-23 19:21:46.622588|[bcos_sdk_start],sdk=0x7fca7b1b9050
+info|2022-01-23 19:21:46.622717|[RPCWS][SERVICE][getGroupInfo],count=2
+info|2022-01-23 19:21:46.623297|[RPC][IMPL][getGroupInfo][get group info from cache],hitCache=true,response={"id":2,"jsonrpc":"2.0","result":{"chainID":"chain","genesisConfig":"{\"blockTxCountLimit\":1000,\"consensusLeaderPeriod\":1,\"consensusType\":\"pbft\",\"sealerList\":[{\"nodeID\":\"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1\",\"weight\":1},{\"nodeID\":\"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8\",\"weight\":1},{\"nodeID\":\"e619e259261fbfa73d8026c23a386cecd620e23c3ea13bc98a03ab7e6a9944f647cbcd63c1cf461ee7dc388dd31bb24d8faf1a757dec9524fb44b72decefc997\",\"weight\":1},{\"nodeID\":\"0e7824d66f0de9fbc7e5907ccb9119200288ca4dec6d311b5cec9ce87865cfd81402acc88904fc1f96c269b09761d3189adf2403933364972d5b1047702cc356\",\"weight\":1}],\"txGasLimit\":300000000}\n","groupID":"group","iniConfig":"","nodeList":[{"iniConfig":"{\"binaryInfo\":{\"buildTime\":\"20211209 17:02:41\",\"gitCommitHash\":\"c0e9dadb6e7ad1bbaf3128a27803226fb7ba6a9a\",\"platform\":\"Darwin/appleclang\",\"version\":\"3.0.0-rc1\"},\"chainID\":\"chain\",\"gatewayServiceName\":\"\",\"groupID\":\"group\",\"isAuthCheck\":false,\"isWasm\":false,\"nodeID\":\"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8\",\"nodeName\":\"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8\",\"rpcServiceName\":\"\",\"smCryptoType\":false}\n","name":"381cdf2a507fde5fba68b850966a399b04382c59ab541ea17faa447499211f07bfd6b9e2b0c6ed9278da8c5c8f60eedf77d2bd66a2791457a15a60d3b31e5ea8","serviceInfo":[{"serviceName":".","type":2},{"serviceName":".","type":3},{"serviceName":".","type":4},{"serviceName":".","type":5},{"serviceName":".","type":8}],"type":0},{"iniConfig":"{\"binaryInfo\":{\"buildTime\":\"20211209 17:02:41\",\"gitCommitHash\":\"c0e9dadb6e7ad1bbaf3128a27803226fb7ba6a9a\",\"platform\":\"Darwin/appleclang\",\"version\":\"3.0.0-rc1\"},\"chainID\":\"chain\",\"gatewayServiceName\":\"\",\"groupID\":\"group\",\"isAuthCheck\":false,\"isWasm\":false,\"nodeID\":\"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1\",\"nodeName\":\"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1\",\"rpcServiceName\":\"\",\"smCryptoType\":false}\n","name":"89e389f4beb878fb14860f6589e4736b1bacfaaeb1736e0b90d2652ed9e3fccb0a06ad789322e6208878352fa3fe4ddae7702f78e96a8ade7f2f9935a3e081d1","serviceInfo":[{"serviceName":".","type":2},{"serviceName":".","type":3},{"serviceName":".","type":4},{"serviceName":".","type":5},{"serviceName":".","type":8}],"type":0}]}}
+trace|2022-01-23 19:21:46.634034|[RPCWS][SERVICE][getEndPointsByGroup],group=group,endPoints=2
+debug|2022-01-23 19:21:46.634146|[RPC][IMPL][genericMethod],group=group,nodeName=,request={"jsonrpc":"2.0","method":"getBlockNumber","params":["group",""],"id":3}
+trace|2022-01-23 19:21:58.347694|[RPCWS][SERVICE][getEndPointsByGroup],group=group,endPoints=2
+debug|2022-01-23 19:21:58.347770|[RPC][IMPL][genericMethod],group=group,nodeName=,request={"jsonrpc":"2.0","method":"sendTransaction","params":["group","","GhwmBWNoYWluNgVncm91cEEB+1ZLMjA3NTk1MTY3MjYyNDA2NzAyNDI5MzU4ODI1ODA5ODE1MTY2Mzk0ODczMjk0Nzc4NTgxOTIzODkzNjk1MjYxODYxNjg3MzQxMjQ2Zig2ODQ5RjIxRDFFNDU1ZTlmMDcxMmIxZTk5RmE0RkNEMjM3NThFOEYxfQABAMTpQrUWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEMTAwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABTMwMDAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACy0AACCB2R6WFSqChWb49jr7TCusVziCsYekAlLn+PRQDcDc9j0AAEEmgCOjMBSzzWCfPNDecaSbxAaTd6x0t94JKroMci+paD6wkAx2VoWdY6nt2HgUOXPbl6ehzdn5uY2hZju1x7EtAExQAQ==",false],"id":4}
+debug|2022-01-23 19:21:58.355909|[WS][SERVICE][onRecvMessage]receive message from server,type=257,seq=7bd96d0796b844dd8151f9b5cc3a6cc9,endpoint=127.0.0.1:20201,data size=67,use_count=6
+info|2022-01-23 19:21:58.355967|[RPC][BLOCK][NUMBER][fromJson],group=group,node=,blockNumber=8
+debug|2022-01-23 19:21:58.356043|[WS][SERVICE][onRecvMessage]receive message from server,type=257,seq=2f086f5914754e509c443709da8147f8,endpoint=127.0.0.1:20200,data size=67,use_count=6
+info|2022-01-23 19:21:58.356063|[RPC][BLOCK][NUMBER][fromJson],group=group,node=,blockNumber=8
+info|2022-01-23 19:21:58.356564|[RPCWS][SERVICE][onRecvBlockNotifier]receive block number notifier,group=group,node=,blockNumber=8
+info|2022-01-23 19:21:58.356643|[RPCWS][SERVICE][onRecvBlockNotifier]receive block number notifier,group=group,node=,blockNumber=8
+info|2022-01-23 19:21:58.356676|[RPCWS][SERVICE][onRecvBlockNotifier]block notifier callback,group=group,node=,blockNumber=8
+info|2022-01-23 19:21:58.356715|[WS]receive block notify,endpoint=127.0.0.1:20200,blk={
+   "blockNumber" : 8,
+   "group" : "group",
+   "nodeName" : ""
+}
+info|2022-01-23 19:21:58.356744|[WS]receive block notify,endpoint=127.0.0.1:20201,blk={
+   "blockNumber" : 8,
+   "group" : "group",
+   "nodeName" : ""
+}
+info|2022-01-23 19:22:05.459732|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-23 19:22:05.773088|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
+trace|2022-01-23 19:22:07.140743|[RPCWS][SERVICE][getEndPointsByGroup],group=group,endPoints=2
+debug|2022-01-23 19:22:07.140785|[RPC][IMPL][genericMethod],group=group,nodeName=,request={"jsonrpc":"2.0","method":"sendTransaction","params":["group","","GhwmBWNoYWluNgVncm91cEEB/FZMMTUzMDc2MTUwNDEyMjc5NzA1MzczNzMxMTQ2OTI0ODY2MDEyMTg5OTM3MzY0MjU0ODQwMzIxNTY1Mzc0NzA2NDQ3OTMwMzk1NjM4M2YoNjg0OUYyMUQxRTQ1NWU5ZjA3MTJiMWU5OUZhNEZDRDIzNzU4RThGMX0AAQDE6UK1FgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzMwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUzMDAwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAstAAAgamKoWYWa3jXyjQVz5AaVOY6nE0SjTCcRcHqEgJhmIp49AABBZhZRHXa0G9xZiwhxFYt3Z2ecVCepNLRhDXek4b0+zrRQQZa8fpkDiY1SrnYuna0ST1ZXAX9jkO+AEYPP4TzwAAFMUAE=",false],"id":5}
+debug|2022-01-23 19:22:07.149278|[WS][SERVICE][onRecvMessage]receive message from server,type=257,seq=f3d7b36ede5344698e56ccc44a4e3256,endpoint=127.0.0.1:20201,data size=67,use_count=6
+info|2022-01-23 19:22:07.149344|[RPC][BLOCK][NUMBER][fromJson],group=group,node=,blockNumber=9
+info|2022-01-23 19:22:07.149362|[RPCWS][SERVICE][onRecvBlockNotifier]receive block number notifier,group=group,node=,blockNumber=9
+info|2022-01-23 19:22:07.149369|[RPCWS][SERVICE][onRecvBlockNotifier]block notifier callback,group=group,node=,blockNumber=9
+info|2022-01-23 19:22:07.149374|[WS]receive block notify,endpoint=127.0.0.1:20201,blk={
+   "blockNumber" : 9,
+   "group" : "group",
+   "nodeName" : ""
+}
+debug|2022-01-23 19:22:07.149381|[WS][SERVICE][onRecvMessage]receive message from server,type=257,seq=29b75bfc5b9a49e5993b99957a9b199b,endpoint=127.0.0.1:20200,data size=67,use_count=6
+info|2022-01-23 19:22:07.149421|[RPC][BLOCK][NUMBER][fromJson],group=group,node=,blockNumber=9
+info|2022-01-23 19:22:07.149431|[RPCWS][SERVICE][onRecvBlockNotifier]receive block number notifier,group=group,node=,blockNumber=9
+info|2022-01-23 19:22:07.149437|[WS]receive block notify,endpoint=127.0.0.1:20200,blk={
+   "blockNumber" : 9,
+   "group" : "group",
+   "nodeName" : ""
+}
+info|2022-01-23 19:22:25.463480|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-23 19:22:25.779052|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
+info|2022-01-23 19:22:45.468266|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-23 19:22:45.783226|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
+info|2022-01-23 19:23:05.472392|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-23 19:23:05.787452|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
+info|2022-01-23 19:23:25.477083|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-23 19:23:25.791515|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
+info|2022-01-23 19:23:45.481873|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-23 19:23:45.792013|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
+info|2022-01-23 19:24:05.486002|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-23 19:24:05.797073|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0
+info|2022-01-23 19:24:25.489599|[WS][SERVICE][heartbeat]connected nodes,count=2
+info|2022-01-23 19:24:25.801462|[EVENT][SUB][doLoop]event sub tasks report,working event sub count=0,suspend event sub count=0

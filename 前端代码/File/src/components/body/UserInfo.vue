@@ -31,12 +31,12 @@ export default {
     name: 'UserInfo',
     data: function (){
       return {
-        "accountId": "123",
-        "author": "linhan",
-        "idCard": "330382199908131739",
-        "password": "wu82293382",
-        "phoneNumber": "13185887658",
-        "username": "linhan"
+        "accountId": "",
+        "author": "",
+        "idCard": "",
+        "password": "",
+        "phoneNumber": "",
+        "username": ""
       }
     },
 }

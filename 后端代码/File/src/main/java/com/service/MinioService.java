@@ -20,7 +20,9 @@ import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -38,27 +40,33 @@ public class MinioService {
     failed: -1
     filePushDatabaseFailed: -2
      */
-    public int upload(MultipartFile[] file, String accountId) {
+    public List upload(MultipartFile[] file, String accountId) {
+        List<Map<String, Object>> list_res = new ArrayList<>();
         for (MultipartFile multipartFile : file) {
             //获取MD5值
             try{
+                Map<String, Object> res = new HashMap<>();
                 String fileMD5 = FileHash.getFileMD5(multipartFile.getInputStream().readAllBytes());
                 FileInfo fileInfo = new FileInfo();
                 fileInfo.setFileMD5(fileMD5);
-                fileInfo.setFileId(getFileId(accountId, fileMD5));
+                String fileId = getFileId(accountId, fileMD5);
+                fileInfo.setFileId(fileId);
                 fileInfo.setFileName(multipartFile.getOriginalFilename());
                 fileInfo.setAccountId(accountId);
                 if (!addFileInfo(fileInfo))      //文件信息入库
-                    return -2;
+                    return list_res;
                 fileUpload(multipartFile);  //文件上传
+
+                res.put("fileId", fileId);
+                res.put("fileMD5", fileMD5);
+                list_res.add(res);
             }catch (Exception e){
                 log.error(e.getMessage());
-                return -1;
+                return list_res;
             }
-
         }
         //打印加密后的MD5值
-        return 0;
+        return list_res;
     }
 
     public void download(HttpServletResponse response, String filename){

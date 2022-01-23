@@ -36,6 +36,11 @@ spring:
           predicates:
             - Path=/file/**
 
+        - id: blockchain
+          uri: lb://blockchain
+          predicates:
+            - Path=/blockchain/**
+
 server:
   port: 80
 

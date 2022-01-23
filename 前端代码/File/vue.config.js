@@ -15,6 +15,10 @@ module.exports = {
                     '^/api': '/' 
                 }
             },
+            '/block': {
+                target: 'http://localhost:40001/blockchain',
+                changOrigin: true,  //允许跨域
+            }
         }
     }, 
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/blockchain/api")
+@CrossOrigin
 public class KVController {
 
     @Autowired

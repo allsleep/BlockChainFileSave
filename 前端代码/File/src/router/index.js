@@ -4,6 +4,7 @@ import Login from "../components/Login"
 import Signup from "../components/Signup"
 import Layout from "../components/Layout"
 import UserInfo from "../components/body/UserInfo"
+import PutFileResult from "../components/body/PutFileResult"
 
 export default new VueRouter({
     routes: [
@@ -25,17 +26,21 @@ export default new VueRouter({
                 },
                 {
                     path: "/fileup",
-                    component: FileUpload
+                    component: FileUpload,
                 },
                 {
                     path: "/userinfo",
                     component: UserInfo
                 },
+                {
+                    path: "/putfileresult",
+                    component: PutFileResult
+                }
             ]
         },
         { 
             path: '*', 
-            redirect: '/layout' 
+            redirect: '/login' 
         }
     ]
 })
