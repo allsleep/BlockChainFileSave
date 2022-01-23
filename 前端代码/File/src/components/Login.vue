@@ -14,7 +14,7 @@
           </div>
     </div>
       <button @click="login" class="click_button" to="/layout">登录</button>
-      <router-link class="click_button router_link" to="/login/signup">注册</router-link>
+      <button @click="signup" class="click_button">注册</button>
   </div>
 </div>
 </template>
@@ -53,6 +53,9 @@ export default {
           return
         }
       })
+    },
+    signup: function() {
+      this.$router.push('/login/signup')
     }
   }
 }

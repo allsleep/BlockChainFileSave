@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1 style="margin-left: 41%; margin-top:8%">上传文件上链</h1>
+    <h1 style="margin-left: 42%; margin-top:8%">上传文件上链</h1>
     <div class="fileBase">
         <!-- <div>{{message}}</div> -->
         <div class="upload-file">
@@ -81,8 +81,6 @@ export default {
                 alert("请选择文件")
                 return
             }
-            let fileId = ''
-            let fileMD5 = ''
             var formData = new FormData();
             formData.append('num', this.addType);
             formData.append('linkId',this.addId);
@@ -103,17 +101,18 @@ export default {
                     var message = res.data.message;
                     alert(message)
                     console.log("调用接口", res.data)
-                    fileId = res.data.data[0].fileId;
-                    fileMD5 = res.data.data[0].fileMD5;
-                    if(this.ischain){
-                    this.executeBlockChain(fileId, fileMD5);
-                        console.log('调用')
+                    if (this.ischain) {
+                        let fileId = ''
+                        let fileMD5 = ''
+                        for (var i = 0; i < this.addArr.length; i++){
+                            fileId = res.data.data[0].fileId;
+                            fileMD5 = res.data.data[0].fileMD5;
+                            this.executeBlockChain(fileId, fileMD5);
+                            this.$router.push('/putfileresult')
+                        }
                     }
                 }
             ).catch((err) => {console.log(err);return})
-
-
-            // this.$router.push('/putfileresult')
         },
         resetAdd(){
             this.addArr = []
@@ -162,7 +161,7 @@ export default {
             this.$axios.post("http://localhost:40001/blockchain/api/upload", data, config)
             .then(res => {
                 console.log(res)
-                console.log("hello")
+                sessionStorage.setItem('blockchainResult', JSON.stringify(res.data.data))
             }).catch((error) => console.log(error))
         }
     }
@@ -176,8 +175,7 @@ export default {
     margin: auto;
     margin-left: 40%;
     margin-top: 8%;
-    /* text-align: center; */
-    
+    /* text-align: center; */ 
 }
 
 #file-box{

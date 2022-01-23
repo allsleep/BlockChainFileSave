@@ -22,7 +22,7 @@ export default new VueRouter({
             children: [
                 {
                     path: "",
-                    component: UserInfo
+                    component: FileUpload
                 },
                 {
                     path: "/fileup",
